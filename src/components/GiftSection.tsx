@@ -16,8 +16,12 @@ const GiftSection: React.FC = () => {
     const [isCashlessVisible, setIsCashlessVisible] = useState(false);
 
     // Warna tombol baru
-    const buttonColor = '#414C3D';
-    const buttonHoverColor = '#37422F';
+    const buttonColor = '#2C363C';
+    // ✅ PERUBAHAN: Warna hover diubah menjadi #3E4E57
+    const buttonHoverColor = '#3E4E57';
+
+    // Warna Teks baru (untuk semua teks)
+    const TEXT_COLOR = '#2C363C';
 
     // Data dummy (ganti dengan data sebenarnya)
     const rekeningData = {
@@ -89,23 +93,23 @@ const GiftSection: React.FC = () => {
                     </div>
                     
                     {/* Deskripsi */}
-                    <p className="text-base text-gray-600 leading-relaxed mt-8 mb-12" style={{fontFamily: "Markazi Text, serif"}}>
+                    <p className="text-base leading-relaxed mt-8 mb-12" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>
                         Doa restu anda merupakan karunia yang sangat berarti bagi kami, dan jika memberi adalah ungkapan tanda kasih anda, anda dapat memberi kado secara cashless.
                     </p>
                     
                     {/* --- Bagian KLIK WEDDING GIFT (Tombol Utama) --- */}
                     <div className="mb-10">
-                        <p className="text-sm uppercase tracking-wider text-gray-700 font-medium mb-3" style={{fontFamily: "Markazi Text, serif"}}>
+                        <p className="text-sm uppercase tracking-wider font-medium mb-3" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>
                             KLIK WEDDING GIFT
                         </p>
                         
-                        {/* Tombol Wedding Gift */}
+                        {/* Tombol Wedding Gift - Menggunakan buttonColor & buttonHoverColor baru */}
                         <button
                             onClick={handleGiftButtonClick}
                             className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white transition duration-150 ease-in-out"
-                            style={{ backgroundColor: buttonColor }} // Warna kustom
-                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = buttonHoverColor)} // Hover kustom
-                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = buttonColor)} // Kembali ke warna kustom
+                            style={{ backgroundColor: buttonColor }}
+                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = buttonHoverColor)}
+                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = buttonColor)}
                         >
                             <svg className="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M5.4 3.3l-.9.9.9.9.9-.9-.9-.9zm9.2 0l-.9.9.9.9.9-.9-.9-.9zM10 2c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14.5c-3.6 0-6.5-2.9-6.5-6.5 0-2.3 1.2-4.4 3-5.5.4-.2.9-.1 1.2.3l.6.8c.2.3.6.4.9.4.4 0 .7-.1.9-.4l.6-.8c.3-.4.8-.5 1.2-.3 1.8 1.1 3 3.2 3 5.5 0 3.6-2.9 6.5-6.5 6.5zM10 8a2 2 0 100 4 2 2 0 000-4z" />
@@ -120,12 +124,12 @@ const GiftSection: React.FC = () => {
                             
                             {/* Card Rekening */}
                             <div className="bg-white p-8 rounded-xl shadow-lg">
-                                <h3 className="text-3xl font-['Playfair_Display',serif] italic font-light text-gray-800 mb-6" style={{fontFamily: "Markazi Text, serif"}}>Rekening</h3>
+                                <h3 className="text-3xl font-['Playfair_Display',serif] italic font-light mb-6" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>Rekening</h3>
                                 
-                                <p className="text-lg font-medium text-gray-800" style={{fontFamily: "Markazi Text, serif"}}>{rekeningData.bank}</p>
-                                <p className="text-2xl font-bold text-gray-900 mb-4" style={{fontFamily: "Markazi Text, serif"}}>{rekeningData.nomor}</p>
+                                <p className="text-lg font-medium" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{rekeningData.bank}</p>
+                                <p className="text-2xl font-bold mb-4" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{rekeningData.nomor}</p>
                                 
-                                {/* Tombol Salin Rekening */}
+                                {/* Tombol Salin Rekening - Menggunakan renderCustomButton (warna hover baru) */}
                                 {renderCustomButton(
                                     () => copyToClipboard(rekeningData.nomor, 'Nomor Rekening'),
                                     <svg className="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -135,7 +139,7 @@ const GiftSection: React.FC = () => {
                                     'Salin Rekening'
                                 )}
                                 
-                                <p className="text-base text-gray-600 mt-4" style={{fontFamily: "Markazi Text, serif"}}>an. **{rekeningData.atasNama}**</p>
+                                <p className="text-base mt-4" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>an. **{rekeningData.atasNama}**</p>
                                 
                                 {/* Gambar-gambar bank */}
                                 <div className="flex justify-center space-x-4 mt-4">
@@ -147,12 +151,12 @@ const GiftSection: React.FC = () => {
 
                             {/* Card Kirim Kado (Alamat) */}
                             <div className="bg-white p-8 rounded-xl shadow-lg">
-                                <h3 className="text-3xl font-['Playfair_Display',serif] italic font-light text-gray-800 mb-6" style={{fontFamily: "Markazi Text, serif"}}>Kirim Kado</h3>
+                                <h3 className="text-3xl font-['Playfair_Display',serif] italic font-light mb-6" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>Kirim Kado</h3>
                                 
-                                <p className="text-lg font-medium text-gray-800" style={{fontFamily: "Markazi Text, serif"}}>Alamat</p>
-                                <p className="text-2xl font-normal text-gray-900 mb-4" style={{fontFamily: "Markazi Text, serif"}}>{alamatData.judul}</p> 
+                                <p className="text-lg font-medium" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>Alamat</p>
+                                <p className="text-2xl font-normal mb-4" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{alamatData.judul}</p> 
                                 
-                                {/* Tombol Salin Alamat */}
+                                {/* Tombol Salin Alamat - Menggunakan renderCustomButton (warna hover baru) */}
                                 {renderCustomButton(
                                     () => copyToClipboard(alamatData.detail, 'Alamat'),
                                     <svg className="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -168,10 +172,10 @@ const GiftSection: React.FC = () => {
                     
                     {/* --- Bagian KONFIRMASI WEDDING GIFT (Selalu Tampil) --- */}
                     <div className='mt-8'> 
-                        <p className="text-sm uppercase tracking-wider text-gray-700 font-medium mb-3" style={{fontFamily: "Markazi Text, serif"}}>
+                        <p className="text-sm uppercase tracking-wider font-medium mb-3" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>
                             KONFIRMASI WEDDING GIFT
                         </p>
-                        {/* Tombol Konfirmasi Via WA */}
+                        {/* Tombol Konfirmasi Via WA - Menggunakan renderCustomLink (warna hover baru) */}
                         {renderCustomLink(
                             "https://wa.me/6289528048690", // Ganti dengan nomor WhatsApp Anda
                             <svg className="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

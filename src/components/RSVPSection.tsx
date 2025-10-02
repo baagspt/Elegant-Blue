@@ -18,8 +18,21 @@ interface RsvpData {
 }
 
 // Konstanta untuk batas tampilan awal dan langkah pemuatan
-const INITIAL_LIMIT = 5; // <--- DIUBAH MENJADI 5
-const LOAD_MORE_STEP = 5;  // <--- DIUBAH MENJADI 5
+const INITIAL_LIMIT = 5; 
+const LOAD_MORE_STEP = 5;  
+
+// ------------------------------------------------------------------
+// PENGATURAN WARNA BARU SESUAI PERMINTAAN
+// ------------------------------------------------------------------
+const BACKGROUND_COLOR = '#94AAB7';          // Warna background utama
+const NEW_COLOR = '#2C363C';                 // Warna Utama (judul, label, tombol, nama, pesan)
+const NEW_COLOR_LIGHT = '#414C52';           // Warna untuk Hover/Efek sedikit terang
+const TEXT_WHITE_COLOR = '#FFFFFF';          // Warna Putih
+const SHADOW_BASE_COLOR = NEW_COLOR;         // Warna dasar shadow
+const NEW_COLOR_SHADOW_STRONG = `${SHADOW_BASE_COLOR}70`; // Shadow kuat untuk box (Opacity 70%)
+const NEW_COLOR_SHADOW_MEDIUM = `${SHADOW_BASE_COLOR}40`; // Shadow sedang untuk tombol & list (Opacity 40%)
+// ------------------------------------------------------------------
+
 
 // Komponen Utama Aplikasi
 const RSVPSection: FC = () => {
@@ -30,10 +43,9 @@ const RSVPSection: FC = () => {
     const [message, setMessage] = useState<string>('');
     const [userId, setUserId] = useState<string | null>(null); 
     const [isAuthReady, setIsAuthReady] = useState<boolean>(false);
-    // ✅ PERUBAHAN: Status pesan diseragamkan ke bahasa Indonesia
     const [submitStatus, setSubmitStatus] = useState<string>('Menghubungkan ke database...');
     const [isLoadingMessages, setIsLoadingMessages] = useState<boolean>(true);
-    const [displayLimit, setDisplayLimit] = useState(INITIAL_LIMIT); // State untuk mengontrol batas tampilan
+    const [displayLimit, setDisplayLimit] = useState(INITIAL_LIMIT); 
 
     const PUBLIC_COLLECTION_PATH = `rsvps`;
 
@@ -99,7 +111,7 @@ const RSVPSection: FC = () => {
         if (!isAuthReady || !db) return;
         
         setIsLoadingMessages(true);
-        setSubmitStatus("Memuat ucapan...");
+        setSubmitStatus("Memuat ucapan..."); 
 
         try {
             const rsvpsCol = collection(db, PUBLIC_COLLECTION_PATH) as CollectionReference<DocumentData>;
@@ -121,9 +133,11 @@ const RSVPSection: FC = () => {
 
                 setMessages(fetchedMessages); 
                 setIsLoadingMessages(false);
+                
+                // HANYA UPDATE STATUS JIKA TIDAK BERISI ERROR/BERHASIL 
                 if (!submitStatus.toLowerCase().includes('error') && !submitStatus.toLowerCase().includes('berhasil')) {
-                    // ✅ PERUBAHAN: Status teks ucapan
-                    setSubmitStatus(`Tersambung, ${fetchedMessages.length} ucapan dimuat.`);
+                    // Teks ini berwarna putih di atas background #94AAB7
+                    setSubmitStatus(`Tersambung, ${fetchedMessages.length} ucapan dimuat.`); 
                 }
             }, (error) => {
                 console.error("Error mendengarkan koleksi RSVP:", error);
@@ -192,7 +206,6 @@ const RSVPSection: FC = () => {
             }
             setAttendance('');
             setMessage('');
-            // ✅ PERUBAHAN: Status sukses
             setSubmitStatus("Berhasil Dikirim! Terima kasih. Ucapan Anda akan segera muncul.");
 
         } catch (error) {
@@ -238,6 +251,7 @@ const RSVPSection: FC = () => {
     return (
         <div className="min-h-screen">
             <style>
+                {/* Definisi CSS kustom di sini untuk Focus Ring dan Hover */}
                 {`
                     @import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&family=Inter:wght@100..900&display=swap');
                     .font-markazi {
@@ -248,13 +262,23 @@ const RSVPSection: FC = () => {
                     * {
                         font-family: 'Inter', sans-serif;
                     }
+                    /* Class khusus untuk Focus Ring yang menggunakan warna dinamis NEW_COLOR */
+                    .focus-ring-custom:focus {
+                        outline: none;
+                        border-color: ${NEW_COLOR}; 
+                        box-shadow: 0 0 0 3px ${NEW_COLOR_SHADOW_MEDIUM}; /* Ring shadow manual */
+                    }
+                    /* Class khusus untuk hover tombol utama */
+                    .hover-bg-custom:hover {
+                        background-color: ${NEW_COLOR_LIGHT}; /* Warna hover sedikit lebih terang */
+                    }
                 `}
             </style>
             
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             
-            {/* ✅ PERUBAHAN 1: Background section diubah menjadi #727E6A */}
-            <section className="py-12 md:py-20 bg-[#727E6A] min-h-screen flex items-center justify-center"> 
+            {/* Background section menggunakan BACKGROUND_COLOR */}
+            <section className="py-12 md:py-20 min-h-screen flex items-center justify-center" style={{ backgroundColor: BACKGROUND_COLOR }}> 
                 <div className="container mx-auto px-4 w-full max-w-4xl">
                     
                     {/* Header */}
@@ -268,7 +292,8 @@ const RSVPSection: FC = () => {
                         />
                         </div>
                         
-                        <p className="text-l text-white max-w-2xl mx-auto tracking-wider font-markazi">
+                        {/* Teks ini berwarna putih */}
+                        <p className="text-l max-w-2xl mx-auto tracking-wider font-markazi" style={{ color: TEXT_WHITE_COLOR }}>
                             Tolooong konfirmasi kehadiran sebelum tanggal 02 Februari 2025
                         </p>
                     </div>
@@ -283,14 +308,16 @@ const RSVPSection: FC = () => {
                     {/* Form Card */}
                     <div 
                         className="max-w-2xl mx-auto bg-white p-6 md:p-10 rounded-xl shadow-2xl"
+                        // Shadow box menggunakan NEW_COLOR_SHADOW_STRONG
+                        style={{ boxShadow: `0 25px 50px -12px ${NEW_COLOR_SHADOW_STRONG}` }} 
                     >
-                        {/* ✅ PERUBAHAN 3: Header form diubah menjadi text-[#414C3D] */}
-                        <h1 className="font-bold text-[#414C3D] mb-6 text-center font-markazi text-3xl md:text-4xl">Konfirmasi & Ucapan</h1>
+                        {/* Header form menggunakan NEW_COLOR */}
+                        <h1 className="font-bold mb-6 text-center font-markazi text-3xl md:text-4xl" style={{ color: NEW_COLOR }}>Konfirmasi & Ucapan</h1>
                         <form onSubmit={handleSubmit}>
                             {/* Nama */}
                             <div className="mb-6">
-                                {/* ✅ PERUBAHAN 4: Label form diubah menjadi text-[#414C3D] */}
-                                <label htmlFor="name" className="block text-[#414C3D] mb-2 font-semibold text-sm md:text-base font-markazi">
+                                {/* Label form menggunakan NEW_COLOR */}
+                                <label htmlFor="name" className="block mb-2 font-semibold text-sm md:text-base font-markazi" style={{ color: NEW_COLOR }}>
                                     Nama Anda
                                 </label>
                                 <input
@@ -298,10 +325,10 @@ const RSVPSection: FC = () => {
                                     id="name"
                                     value={guestName}
                                     onChange={(e) => setGuestName(e.target.value)}
-                                    // Membuat input read-only jika nama berasal dari URL
                                     readOnly={getGuestNameFromUrl() !== ''} 
-                                    // ✅ PERUBAHAN 5: Focus Ring Input dan Textarea
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#414C3D] text-sm md:text-base text-black transition disabled:bg-gray-100"
+                                    // Border dan focus ring menggunakan NEW_COLOR
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus-ring-custom text-sm md:text-base text-black transition disabled:bg-gray-100"
+                                    style={{ borderColor: NEW_COLOR }} 
                                     placeholder="Tamu Undangan"
                                     required
                                 />
@@ -312,8 +339,8 @@ const RSVPSection: FC = () => {
                             
                             {/* Attendance */}
                             <div className="mb-6">
-                                {/* ✅ PERUBAHAN 4: Label form diubah menjadi text-[#414C3D] */}
-                                <p className="text-[#414C3D] mb-3 font-semibold text-sm md:text-base font-markazi">Apakah anda akan hadir?</p>
+                                {/* Label form menggunakan NEW_COLOR */}
+                                <p className="mb-3 font-semibold text-sm md:text-base font-markazi" style={{ color: NEW_COLOR }}>Apakah anda akan hadir?</p>
                                 <div className="flex space-x-6">
                                     {/* Ya */}
                                     <div className="flex items-center">
@@ -323,8 +350,9 @@ const RSVPSection: FC = () => {
                                             name="attendance"
                                             checked={attendance === 'yes'}
                                             onChange={() => setAttendance('yes')}
-                                            // ✅ PERUBAHAN 5: Warna Radio Button
-                                            className="mr-2 h-5 w-5 text-[#414C3D] border-gray-300 focus:ring-[#414C3D]"
+                                            // Warna radio button menggunakan NEW_COLOR
+                                            className="mr-2 h-5 w-5 border-gray-300 focus:ring-2"
+                                            style={{ accentColor: NEW_COLOR }} 
                                             required
                                         />
                                         <label htmlFor="attending-yes" className="text-gray-700 text-sm md:text-base font-markazi">
@@ -339,8 +367,9 @@ const RSVPSection: FC = () => {
                                             name="attendance"
                                             checked={attendance === 'no'}
                                             onChange={() => setAttendance('no')}
-                                            // ✅ PERUBAHAN 5: Warna Radio Button
-                                            className="mr-2 h-5 w-5 text-[#414C3D] border-gray-300 focus:ring-[#414C3D]"
+                                            // Warna radio button menggunakan NEW_COLOR
+                                            className="mr-2 h-5 w-5 border-gray-300 focus:ring-2"
+                                            style={{ accentColor: NEW_COLOR }} 
                                             required
                                         />
                                         <label htmlFor="attending-no" className="text-gray-700 text-sm md:text-base font-markazi">
@@ -352,8 +381,8 @@ const RSVPSection: FC = () => {
 
                             {/* Pesan */}
                             <div className="mb-8">
-                                {/* ✅ PERUBAHAN 4: Label form diubah menjadi text-[#414C3D] */}
-                                <label htmlFor="message" className="block text-[#414C3D] mb-2 font-semibold text-sm md:text-base font-markazi"> 
+                                {/* Label form menggunakan NEW_COLOR */}
+                                <label htmlFor="message" className="block mb-2 font-semibold text-sm md:text-base font-markazi" style={{ color: NEW_COLOR }}> 
                                     Pesan (Ucapan & Doa)
                                 </label>
                                 <textarea
@@ -361,8 +390,9 @@ const RSVPSection: FC = () => {
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
                                     rows={4}
-                                    // ✅ PERUBAHAN 5: Focus Ring Input dan Textarea
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#414C3D] text-sm md:text-base text-black transition"
+                                    // Border dan focus ring menggunakan NEW_COLOR
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus-ring-custom text-sm md:text-base text-black transition"
+                                    style={{ borderColor: NEW_COLOR }} 
                                     placeholder="Bagikan Ucapan Kepada Mempelai" 
                                     required
                                 ></textarea>
@@ -372,8 +402,13 @@ const RSVPSection: FC = () => {
                             <button
                                 type="submit"
                                 disabled={!isAuthReady || !userId} 
-                                // ✅ PERUBAHAN 6: Latar belakang dan hover tombol (sudah benar)
-                                className="w-full bg-[#414C3D] hover:bg-[#5C6758] text-white font-medium py-2 px-4 rounded-lg transition duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed shadow-md hover:shadow-lg text-sm md:text-base"
+                                // Latar belakang dan hover tombol menggunakan NEW_COLOR
+                                className="w-full text-white font-medium py-2 px-4 rounded-lg transition duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed shadow-md hover-bg-custom text-sm md:text-base"
+                                style={{ 
+                                    backgroundColor: NEW_COLOR, 
+                                    // Shadow tombol menggunakan NEW_COLOR_SHADOW_MEDIUM
+                                    boxShadow: `0 4px 6px -1px ${NEW_COLOR_SHADOW_MEDIUM}, 0 2px 4px -2px ${NEW_COLOR_SHADOW_MEDIUM}` 
+                                }}
                             >
                                 {isAuthReady && userId ? "Kirim Ucapan dan Doa" : "Connecting..."}
                             </button>
@@ -384,8 +419,9 @@ const RSVPSection: FC = () => {
                     {(messages.length > 0 || isLoadingMessages) && (
                         <div className="max-w-2xl mx-auto mt-12">
                             <h3 
-                                // PERUBAHAN: Warna text-white dipertahankan karena di atas background gelap
-                                className="text-2xl font-bold text-white mb-6 text-center font-markazi"
+                                // Teks "Ucapan & Doa Restu" berwarna putih
+                                className="text-2xl font-bold mb-6 text-center font-markazi"
+                                style={{ color: TEXT_WHITE_COLOR }}
                             >
                                 Ucapan & Doa Restu ({messages.length})
                             </h3>
@@ -394,15 +430,20 @@ const RSVPSection: FC = () => {
                                 <div className='text-center text-white text-lg font-medium'>Memuat ucapan...</div>
                             ) : (
                                 <ul className="space-y-4 p-2"> 
-                                    {/* Menggunakan messagesToDisplay (hanya 5 atau lebih) */}
                                     {messagesToDisplay.map((msg: RsvpData) => ( 
                                         <li key={msg.id} 
-                                            // ✅ PERUBAHAN 7: Border Top pada Ucapan (sudah benar)
-                                            className="bg-white p-5 rounded-xl shadow-xl border-t-8 border-[#414C3D]/80">
+                                            // Border Top dan Shadow menggunakan NEW_COLOR
+                                            className="bg-white p-5 rounded-xl shadow-xl"
+                                            style={{ 
+                                                borderTop: `8px solid ${NEW_COLOR}`,
+                                                // Shadow list menggunakan NEW_COLOR_SHADOW_MEDIUM
+                                                boxShadow: `0 4px 6px -1px ${NEW_COLOR_SHADOW_MEDIUM}, 0 2px 4px -2px ${NEW_COLOR_SHADOW_MEDIUM}`
+                                            }}>
                                             <div className='flex justify-between items-start mb-2'>
                                                 <p 
-                                                    // ✅ PERUBAHAN 8: Warna teks nama (sudah benar)
-                                                    className="font-bold text-xl text-[#414C3D] font-markazi">
+                                                    // Warna teks nama "Arek Ganteng" dan "Husnul Khotima Yudis" menggunakan NEW_COLOR
+                                                    className="font-bold text-xl font-markazi"
+                                                    style={{ color: NEW_COLOR }}>
                                                     {msg.name} 
                                                 </p>
                                                 <span className={`ml-4 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider ${msg.attendance === 'yes' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
@@ -444,8 +485,12 @@ const RSVPSection: FC = () => {
                                     {isExpanded && (
                                         <button
                                             onClick={handleViewLess}
-                                            // ✅ PERUBAHAN 9: Warna tombol View Less (sudah benar)
-                                            className="bg-gray-200 text-[#414C3D] hover:bg-gray-300 font-medium py-1.5 px-3 rounded-lg transition duration-300 shadow-md text-sm"
+                                            // Warna tombol View Less dan Shadow baru menggunakan NEW_COLOR
+                                            className="bg-gray-200 font-medium py-1.5 px-3 rounded-lg transition duration-300 shadow-md text-sm"
+                                            style={{ 
+                                                color: NEW_COLOR, 
+                                                boxShadow: `0 4px 6px -1px ${NEW_COLOR_SHADOW_MEDIUM}, 0 2px 4px -2px ${NEW_COLOR_SHADOW_MEDIUM}` 
+                                            }}
                                         >
                                             Lihat Lebih Sedikit ({INITIAL_LIMIT})
                                         </button>
@@ -455,8 +500,12 @@ const RSVPSection: FC = () => {
                                     {hasMoreMessages && (
                                         <button
                                             onClick={handleLoadMore}
-                                            // ✅ PERUBAHAN 9: Warna tombol Load More (sudah benar)
-                                            className="bg-white text-[#414C3D] hover:bg-gray-100 font-medium py-1.5 px-3 rounded-lg transition duration-300 shadow-md text-sm"
+                                            // Warna tombol Load More dan Shadow baru menggunakan NEW_COLOR
+                                            className="bg-white font-medium py-1.5 px-3 rounded-lg transition duration-300 shadow-md text-sm"
+                                            style={{ 
+                                                color: NEW_COLOR, 
+                                                boxShadow: `0 4px 6px -1px ${NEW_COLOR_SHADOW_MEDIUM}, 0 2px 4px -2px ${NEW_COLOR_SHADOW_MEDIUM}` 
+                                            }}
                                         >
                                             Lihat {Math.min(LOAD_MORE_STEP, messages.length - displayLimit)} Ucapan Lainnya
                                         </button>

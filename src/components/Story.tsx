@@ -18,6 +18,7 @@ const PIN_PULL_LEFT_MOBILE = '-25px';
 const PIN_HEIGHT_DESKTOP = 32; // Dalam piksel
 const PIN_HEIGHT_MOBILE = 24; // Dalam piksel
 const ITEM_MARGIN_BOTTOM = 40; // Dalam piksel (dari my-10)
+const TEXT_COLOR = '#2C363C'; // Warna Teks Baru
 
 const TimelineItem: React.FC<TimelineItemProps> = ({
     date,
@@ -96,14 +97,14 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 
                     {/* Deskripsi Teks */}
                     <div className="w-full flex flex-col justify-center text-left px-[20px] pb-[20px] pt-0"> 
-                        {/* ✅ PERUBAHAN 1: Date text color menjadi #414C3D */}
-                        <p className="text-xs font-medium text-[#414C3D] mb-1 text-left" style={{fontFamily: "Markazi Text, serif"}}>{date}</p> 
+                        {/* ✅ PERUBAHAN Teks: Date text color menjadi #2C363C */}
+                        <p className="text-xs font-medium mb-1 text-left" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR }}>{date}</p> 
                         
-                        {/* ✅ PERUBAHAN 2: Title text color menjadi #414C3D */}
-                        <h3 className="text-xl font-serif text-[#414C3D] mb-3 text-left" style={{fontFamily: "Markazi Text, serif"}}>{title}</h3> 
+                        {/* ✅ PERUBAHAN Teks: Title text color menjadi #2C363C */}
+                        <h3 className="text-xl font-serif mb-3 text-left" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{title}</h3> 
                         
-                        {/* ✅ PERUBAHAN 3: Description text color menjadi #414C3D */}
-                        <p className="text-[#414C3D] leading-relaxed text-left text-sm" style={{fontFamily: "Markazi Text, serif"}}> 
+                        {/* ✅ PERUBAHAN Teks: Description text color menjadi #2C363C */}
+                        <p className="leading-relaxed text-left text-sm" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}> 
                             {description}
                         </p>
                     </div>
@@ -114,18 +115,17 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
                     className={`absolute top-0 hidden md:block`} 
                     style={{ left: PIN_PULL_LEFT_DESKTOP }} 
                 > 
-                    {/* ✅ PERUBAHAN 4: Ikon pin (lingkaran) diubah menjadi border-2 border-white */}
+                    {/* Ikon pin (lingkaran) - Tetap border-2 border-white */}
                     <div className="bg-white border-2 border-white rounded-full w-8 h-8 flex items-center justify-center relative z-10 shadow-md">
-                        {/* ✅ PERUBAHAN 5: Warna ikon kalender menjadi #727E6A */}
-                        <svg className="w-4 h-4 text-[#727E6A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        {/* Warna ikon kalender - Tetap #79919E */}
+                        <svg className="w-4 h-4 text-[#79919E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                     </div>
 
-                    {/* GARIS VERTIKAL DESKTOP - Tinggi dinamis */}
+                    {/* GARIS VERTIKAL DESKTOP - Tinggi dinamis (Tetap putih) */}
                     {shouldDrawLine && (
                         <div 
-                            // ✅ PERUBAHAN 6: Garis vertikal diubah menjadi putih (bg-white)
                             className="absolute w-0.5 bg-white z-0" 
                             style={{ 
                                 top: desktopLineTop, 
@@ -141,18 +141,17 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
                     className={`absolute top-0 md:hidden z-10`} 
                     style={{left: PIN_PULL_LEFT_MOBILE}}
                 >
-                    {/* ✅ PERUBAHAN 7: Ikon pin (lingkaran) diubah menjadi border-2 border-white */}
+                    {/* Ikon pin (lingkaran) - Tetap border-2 border-white */}
                     <div className="bg-white border-2 border-white rounded-full w-6 h-6 flex items-center justify-center relative shadow-sm">
-                        {/* ✅ PERUBAHAN 8: Warna ikon kalender menjadi #727E6A */}
-                        <svg className="w-4 h-4 text-[#727E6A]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        {/* Warna ikon kalender - Tetap #79919E */}
+                        <svg className="w-4 h-4 text-[#79919E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                     </div>
                     
-                    {/* GARIS VERTIKAL MOBILE - Tinggi dinamis */}
+                    {/* GARIS VERTIKAL MOBILE - Tinggi dinamis (Tetap putih) */}
                     {shouldDrawLine && (
                         <div 
-                            // ✅ PERUBAHAN 9: Garis vertikal diubah menjadi putih (bg-white)
                             className="absolute w-0.5 bg-white z-0" 
                             style={{ 
                                 top: mobileLineTop, 
@@ -195,7 +194,7 @@ const Story: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 bg-[#727E6A]">
+        <section className="py-20 bg-[#79919E]">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
                     <div className="mb-4">
@@ -206,7 +205,7 @@ const Story: React.FC = () => {
                         />
                     </div>
                     
-                    {/* ✅ PERUBAHAN 10: Teks 'The beautiful journey...' diubah menjadi putih (text-white) agar terlihat jelas di latar belakang #727E6A */}
+                    {/* Teks 'The beautiful journey...' dipertahankan putih (text-white) agar terlihat jelas di latar belakang #727E6A */}
                     <p className="text-xl text-white max-w-2xl mx-auto" style={{fontFamily: "Markazi Text, serif"}}>
                         The beautiful journey of our love
                     </p>

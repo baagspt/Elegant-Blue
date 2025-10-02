@@ -20,6 +20,11 @@ const QRSection: React.FC = () => {
     };
     
     const coupleNameForScan = `${names.bride}_${names.groom}`;
+    
+    // Warna Teks dan Border Baru
+    const NEW_COLOR = '#2C363C';
+    // ✅ PERUBAHAN 1: Background Section dikembalikan ke putih
+    const SECTION_BG_COLOR = '#94AAB7'; 
 
     const guestName = useGuestNameFromUrl();
     const [qrError, setQrError] = useState<boolean>(false); 
@@ -41,9 +46,9 @@ const QRSection: React.FC = () => {
         const trimmedName = guestName.trim();
 
         if (trimmedName.length < 1) {
-            // Warna QR placeholder sudah benar: #414C3D
+            const placeholderColor = NEW_COLOR.replace('#', '');
             return {
-                url: 'https://placehold.co/200x200/414C3D/ffffff?text=Masukkan+Nama', 
+                url: `https://placehold.co/200x200/${placeholderColor}/ffffff?text=Masukkan+Nama`, 
                 text: "E-Ticket belum dimuat. Mohon pastikan link undangan benar.",
                 title: "SCAN E-TICKET/LOKASI",
                 encodedData: "N/A"
@@ -66,7 +71,8 @@ const QRSection: React.FC = () => {
     // Handler untuk error QR code
     const handleQrError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
         e.currentTarget.onerror = null; 
-        e.currentTarget.src = "https://placehold.co/200x200/ff6b6b/ffffff?text=QR+BLOKIR";
+        const errorColor = NEW_COLOR.replace('#', '');
+        e.currentTarget.src = `https://placehold.co/200x200/${errorColor}/ffffff?text=QR+BLOKIR`;
         setQrError(true);
     };
 
@@ -81,8 +87,8 @@ const QRSection: React.FC = () => {
                 `}
             </style>
             
-            {/* ✅ PERUBAHAN 1: Background section diubah menjadi #727E6A */}
-            <section className="p-0 bg-[#727E6A]"> 
+            {/* ✅ Background section menggunakan SECTION_BG_COLOR (putih) */}
+            <section className="p-0" style={{ backgroundColor: SECTION_BG_COLOR }}> 
                 <div className="container mx-auto px-4 w-full max-w-md">
                     
                     {/* Header Undangan (TETAP PUTIH) */}
@@ -98,8 +104,8 @@ const QRSection: React.FC = () => {
                     {/* QR CODE SECTION - DINAMIS */}
                     <div className="mx-auto text-center p-6 rounded-xl bg-white shadow-lg">
                         
-                        {/* ✅ PERUBAHAN 2: Judul QR diubah menjadi text-[#414C3D] */}
-                        <h2 className="text-lg md:text-2xl font-bold text-[#414C3D] mb-4 font-markazi">
+                        {/* Judul QR menggunakan NEW_COLOR */}
+                        <h2 className="text-lg md:text-2xl font-bold mb-4 font-markazi" style={{ color: NEW_COLOR }}>
                             {qrCodeData.title}
                         </h2>
                         
@@ -108,8 +114,9 @@ const QRSection: React.FC = () => {
                             <img 
                                 src={qrCodeData.url} 
                                 alt="QR Code Tamu Undangan" 
-                                // ✅ PERUBAHAN 3: Border QR Code diubah menjadi border-[#414C3D]
-                                className={`mx-auto w-48 h-48 rounded-lg shadow-xl border-4 ${qrError ? 'border-red-500' : 'border-[#414C3D]'}`}
+                                // Border QR Code menggunakan NEW_COLOR
+                                className={`mx-auto w-48 h-48 rounded-lg shadow-xl border-4 ${qrError ? 'border-red-500' : ''}`}
+                                style={{ borderColor: qrError ? 'red' : NEW_COLOR }}
                                 onError={handleQrError} 
                             />
                         </div>
@@ -120,13 +127,13 @@ const QRSection: React.FC = () => {
                             </div>
                         )}
                         
-                        {/* ✅ PERUBAHAN 4: Deskripsi diubah menjadi text-[#414C3D] */}
-                        <p className="mt-4 text-[#414C3D] font-medium text-sm md:text-base">
+                        {/* Deskripsi menggunakan NEW_COLOR */}
+                        <p className="mt-4 font-medium text-sm md:text-base" style={{ color: NEW_COLOR }}>
                             {qrCodeData.text}
                         </p>
                         
-                        {/* ✅ PERUBAHAN 5: Nama Tamu diubah menjadi text-[#414C3D] */}
-                        <p className="mt-2 text-base md:text-lg font-extrabold text-[#414C3D] font-markazi">
+                        {/* Nama Tamu menggunakan NEW_COLOR */}
+                        <p className="mt-2 text-base md:text-lg font-extrabold font-markazi" style={{ color: NEW_COLOR }}>
                             Nama Tamu: {guestName || 'Tidak Ditemukan'}
                         </p>
                         

@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Live: React.FC = () => {
+    // Warna Teks Baru
+    const TEXT_COLOR = '#2C363C';
+    
     // === ID VIDEO YOUTUBE (Video Vertikal) ===
     const YOUTUBE_VIDEO_ID = 'vju6z7BxkDc'; 
     
@@ -12,7 +15,9 @@ const Live: React.FC = () => {
             className="py-16 md:py-20"
             style={{
                 // ✅ PERUBAHAN 1: Gradasi dari atas ke bawah (to bottom): Putih (atas) ke #727E6A (bawah)
-                backgroundImage: 'linear-gradient(to bottom, #ffffff, #727E6A)',
+                // Catatan: Saya mengasumsikan Anda ingin warna gradasi tetap dipertahankan seperti di kode sebelumnya, hanya teks yang diubah. Jika Anda ingin gradasi diubah ke #2C363C, beri tahu saya.
+                // Saat ini, gradasi tetap: Putih (atas) ke #94AAB7 (bawah)
+                backgroundImage: 'linear-gradient(to bottom, #ffffff, #94AAB7)',
             }}
         >
             <div className="container mx-auto px-4 max-w-4xl"> 
@@ -27,8 +32,11 @@ const Live: React.FC = () => {
                     </div>
                     
                     {/* Description */}
-                    {/* ✅ PERUBAHAN 2: Teks Deskripsi diubah menjadi text-[#414C3D] */}
-                    <p className="text-base text-[#414C3D] leading-relaxed mb-8" style={{ fontFamily: "Markazi Text, serif" }}>
+                    {/* ✅ PERUBAHAN 2: Teks Deskripsi diubah menjadi #2C363C */}
+                    <p 
+                        className="text-base leading-relaxed mb-8" 
+                        style={{ fontFamily: "Markazi Text, serif", color: TEXT_COLOR }}
+                    >
                         Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/I berkenan hadir untuk memberikan doa restu kepada kedua mempelai
                     </p>
                     
@@ -48,8 +56,8 @@ const Live: React.FC = () => {
                     </div>
                     
                     {/* === BLOK JUDUL NAMA PASANGAN (Menggantikan Title "LIVE Streaming") === */}
-                    {/* ✅ PERUBAHAN 3: Container teks diubah menjadi text-[#414C3D] */}
-                    <div className="text-[#414C3D]"> 
+                    {/* ✅ PERUBAHAN 3: Container teks diubah menjadi #2C363C */}
+                    <div style={{ color: TEXT_COLOR }}> 
                         {/* 1. Jarak di bawah "The Wedding Of" dijadikan renggang (mb-3) */}
                         <div className="mb-3"> 
                             <p 

@@ -35,7 +35,7 @@ const CoverScreen: React.FC<CoverScreenProps> = ({
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/assets/images/bg.jpg')",
+          backgroundImage: "url('/assets/images/bg.png')",
           filter: 'blur(1px)',
         }}
       ></div>
