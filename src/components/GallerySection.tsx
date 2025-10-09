@@ -6,15 +6,15 @@ const GallerySection: React.FC = () => {
     
     // Original images defined by ID.
     const originalImages = [
-        { id: 1, src: '/assets/images/sample1.jpg', alt: 'Aesthetic Nature Image 1', isPortrait: true }, 
-        { id: 2, src: '/assets/images/sample1.jpg', alt: 'Aesthetic Nature Image 2', isPortrait: true }, 
-        { id: 3, src: '/assets/images/sample1.jpg', alt: 'Aesthetic Nature Image 3', isPortrait: true }, 
-        { id: 8, src: '/assets/images/sample1.jpg', alt: 'Aesthetic Nature Image 8', isPortrait: true }, 
+        { id: 1, src: '/assets/images/1.jpg', alt: 'Aesthetic Nature Image 1', isPortrait: true }, 
+        { id: 2, src: '/assets/images/2.jpg', alt: 'Aesthetic Nature Image 2', isPortrait: true }, 
+        { id: 3, src: '/assets/images/3.jpg', alt: 'Aesthetic Nature Image 3', isPortrait: true }, 
+        { id: 8, src: '/assets/images/4.jpg', alt: 'Aesthetic Nature Image 8', isPortrait: true }, 
         // Landscape Images (akan ditumpuk)
-        { id: 4, src: '/assets/images/sample2.jpg', alt: 'Aesthetic Nature Image 4', isPortrait: false }, 
-        { id: 5, src: '/assets/images/sample2.jpg', alt: 'Aesthetic Nature Image 5', isPortrait: false }, 
-        { id: 6, src: '/assets/images/sample2.jpg', alt: 'Aesthetic Nature Image 6', isPortrait: false }, 
-        { id: 7, src: '/assets/images/sample2.jpg', alt: 'Aesthetic Nature Image 7', isPortrait: false }, 
+        { id: 4, src: '/assets/images/5.jpg', alt: 'Aesthetic Nature Image 4', isPortrait: false }, 
+        { id: 5, src: '/assets/images/6.jpg', alt: 'Aesthetic Nature Image 5', isPortrait: false }, 
+        { id: 6, src: '/assets/images/7.jpg', alt: 'Aesthetic Nature Image 6', isPortrait: false }, 
+        { id: 7, src: '/assets/images/8.jpg', alt: 'Aesthetic Nature Image 7', isPortrait: false }, 
     ];
 
     /*

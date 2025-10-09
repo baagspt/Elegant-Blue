@@ -24,11 +24,11 @@ const LOAD_MORE_STEP = 5;  
 // ------------------------------------------------------------------
 // PENGATURAN WARNA BARU SESUAI PERMINTAAN
 // ------------------------------------------------------------------
-const BACKGROUND_COLOR = '#94AAB7';          // Warna background utama
-const NEW_COLOR = '#2C363C';                 // Warna Utama (judul, label, tombol, nama, pesan)
-const NEW_COLOR_LIGHT = '#414C52';           // Warna untuk Hover/Efek sedikit terang
-const TEXT_WHITE_COLOR = '#FFFFFF';          // Warna Putih
-const SHADOW_BASE_COLOR = NEW_COLOR;         // Warna dasar shadow
+const BACKGROUND_COLOR = '#94AAB7';          // Warna background utama
+const NEW_COLOR = '#2C363C';                 // Warna Utama (judul, label, tombol, nama, pesan)
+const NEW_COLOR_LIGHT = '#414C52';           // Warna untuk Hover/Efek sedikit terang
+const TEXT_WHITE_COLOR = '#FFFFFF';          // Warna Putih
+const SHADOW_BASE_COLOR = NEW_COLOR;         // Warna dasar shadow
 const NEW_COLOR_SHADOW_STRONG = `${SHADOW_BASE_COLOR}70`; // Shadow kuat untuk box (Opacity 70%)
 const NEW_COLOR_SHADOW_MEDIUM = `${SHADOW_BASE_COLOR}40`; // Shadow sedang untuk tombol & list (Opacity 40%)
 // ------------------------------------------------------------------
@@ -69,7 +69,8 @@ const RSVPSection: FC = () => {
             }
             if (user) {
                 setUserId(user.uid);
-                setSubmitStatus("Tersambung dan siap.");
+                // Status awal koneksi disembunyikan di UI, tapi state ini penting
+                setSubmitStatus("Tersambung dan siap."); 
             } else {
                 setSubmitStatus("Error: Gagal otentikasi.");
             }
@@ -111,7 +112,7 @@ const RSVPSection: FC = () => {
         if (!isAuthReady || !db) return;
         
         setIsLoadingMessages(true);
-        setSubmitStatus("Memuat ucapan..."); 
+        // setSubmitStatus("Memuat ucapan..."); // Baris ini tidak perlu karena disembunyikan
 
         try {
             const rsvpsCol = collection(db, PUBLIC_COLLECTION_PATH) as CollectionReference<DocumentData>;
@@ -134,9 +135,9 @@ const RSVPSection: FC = () => {
                 setMessages(fetchedMessages); 
                 setIsLoadingMessages(false);
                 
-                // HANYA UPDATE STATUS JIKA TIDAK BERISI ERROR/BERHASIL 
+                // Status koneksi real-time disembunyikan, hanya update jika error/berhasil
                 if (!submitStatus.toLowerCase().includes('error') && !submitStatus.toLowerCase().includes('berhasil')) {
-                    // Teks ini berwarna putih di atas background #94AAB7
+                    // Set status tersambung, tapi tidak akan terlihat di UI
                     setSubmitStatus(`Tersambung, ${fetchedMessages.length} ucapan dimuat.`); 
                 }
             }, (error) => {
@@ -253,26 +254,26 @@ const RSVPSection: FC = () => {
             <style>
                 {/* Definisi CSS kustom di sini untuk Focus Ring dan Hover */}
                 {`
-                    @import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&family=Inter:wght@100..900&display=swap');
-                    .font-markazi {
-                        font-family: 'Markazi Text', serif;
-                        font-optical-sizing: auto;
-                        font-weight: 500;
-                    }
-                    * {
-                        font-family: 'Inter', sans-serif;
-                    }
-                    /* Class khusus untuk Focus Ring yang menggunakan warna dinamis NEW_COLOR */
-                    .focus-ring-custom:focus {
-                        outline: none;
-                        border-color: ${NEW_COLOR}; 
-                        box-shadow: 0 0 0 3px ${NEW_COLOR_SHADOW_MEDIUM}; /* Ring shadow manual */
-                    }
-                    /* Class khusus untuk hover tombol utama */
-                    .hover-bg-custom:hover {
-                        background-color: ${NEW_COLOR_LIGHT}; /* Warna hover sedikit lebih terang */
-                    }
-                `}
+                    @import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&family=Inter:wght@100..900&display=swap');
+                    .font-markazi {
+                        font-family: 'Markazi Text', serif;
+                        font-optical-sizing: auto;
+                        font-weight: 500;
+                    }
+                    * {
+                        font-family: 'Inter', sans-serif;
+                    }
+                    /* Class khusus untuk Focus Ring yang menggunakan warna dinamis NEW_COLOR */
+                    .focus-ring-custom:focus {
+                        outline: none;
+                        border-color: ${NEW_COLOR}; 
+                        box-shadow: 0 0 0 3px ${NEW_COLOR_SHADOW_MEDIUM}; /* Ring shadow manual */
+                    }
+                    /* Class khusus untuk hover tombol utama */
+                    .hover-bg-custom:hover {
+                        background-color: ${NEW_COLOR_LIGHT}; /* Warna hover sedikit lebih terang */
+                    }
+                `}
             </style>
             
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -294,12 +295,15 @@ const RSVPSection: FC = () => {
                         
                         {/* Teks ini berwarna putih */}
                         <p className="text-l max-w-2xl mx-auto tracking-wider font-markazi" style={{ color: TEXT_WHITE_COLOR }}>
-                            Tolooong konfirmasi kehadiran sebelum tanggal 02 Februari 2025
+                            Tolong konfirmasi kehadiran sebelum tanggal 06 Juni 2025
                         </p>
                     </div>
 
-                    {/* Status Message (TETAP PUTIH) */}
-                    {submitStatus && (
+                    {/*
+                        STATUS MESSAGE MODIFIKASI:
+                        Hanya tampilkan jika status mengandung 'error' atau 'berhasil'
+                    */}
+                    {(submitStatus.toLowerCase().includes('error') || submitStatus.toLowerCase().includes('berhasil')) && (
                         <div className={`max-w-2xl mx-auto mb-4 p-4 rounded-lg text-center font-medium text-base ${submitStatus.toLowerCase().includes('error') ? 'bg-red-500 text-white' : 'bg-green-500 text-white'}`}>
                             {submitStatus}
                         </div>
@@ -410,7 +414,8 @@ const RSVPSection: FC = () => {
                                     boxShadow: `0 4px 6px -1px ${NEW_COLOR_SHADOW_MEDIUM}, 0 2px 4px -2px ${NEW_COLOR_SHADOW_MEDIUM}` 
                                 }}
                             >
-                                {isAuthReady && userId ? "Kirim Ucapan dan Doa" : "Connecting..."}
+                                {/* MODIFIKASI TEKS TOMBOL: Selalu tampilkan "Kirim Ucapan dan Doa" */}
+                                Kirim Ucapan dan Doa
                             </button>
                         </form>
                     </div>

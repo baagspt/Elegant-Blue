@@ -177,19 +177,19 @@ const Story: React.FC = () => {
             date: '12 September 2017',
             title: 'Awal Bertemu',
             description: 'Tahun di mana dia dikenalkan oleh rekan kerjanya yang juga temanku melalui sosial media.',
-            imageUrl: '/assets/images/sample2.jpg',
+            imageUrl: '/assets/images/s1.jpg',
         },
         {
             date: '20 June 2018',
             title: 'Kencan Pertama',
             description: 'Sebuah janji pertemuan yang canggung namun berkesan, menjadi awal dari segalanya.',
-            imageUrl: '/assets/images/sample2.jpg',
+            imageUrl: '/assets/images/s2.jpg',
         },
         {
             date: '25 December 2020',
             title: 'Lamaran',
             description: 'Di penghujung tahun, sebuah pertanyaan besar diajukan, dan jawaban "Ya" membawa kami ke langkah selanjutnya.',
-            imageUrl: '/assets/images/sample2.jpg',
+            imageUrl: '/assets/images/s3.jpg',
         },
     ];
 

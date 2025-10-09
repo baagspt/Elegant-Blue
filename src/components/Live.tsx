@@ -5,7 +5,7 @@ const Live: React.FC = () => {
     const TEXT_COLOR = '#2C363C';
     
     // === ID VIDEO YOUTUBE (Video Vertikal) ===
-    const YOUTUBE_VIDEO_ID = 'vju6z7BxkDc'; 
+    const YOUTUBE_VIDEO_ID = 'bk0tr_NQiFU'; 
     
     // URL embed untuk ditampilkan di iframe
     const youtubeEmbedUrl = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&rel=0`;
@@ -73,10 +73,10 @@ const Live: React.FC = () => {
                             className="text-3xl md:text-5xl font-normal tracking-tight mb-3" 
                             style={{ fontFamily: "Whisper, cursive" }} 
                         >
-                            Yudhistira &amp; Pacar
+                            Brian &amp; Niken
                         </h1>
                         {/* 3. Jarak di bawah "02.02.2026" dihilangkan (mb-0) agar rapat dengan batas section bawah */}
-                        <p className="text-sm font-bold font-Alan-Sans mb-0">02.02.2026</p>
+                        <p className="text-sm font-bold font-Alan-Sans mb-0">06.06.2026</p>
                     </div>
                     {/* ============================================= */}
 

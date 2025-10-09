@@ -66,7 +66,7 @@ const BrideSection: React.FC = () => {
                             }}
                         >
                             <img 
-                                src="/assets/images/bride.png" 
+                                src="/assets/images/bride.jpg" 
                                 alt="Groom" 
                                 className="absolute inset-0 w-full h-full object-cover"
                             />
@@ -74,7 +74,7 @@ const BrideSection: React.FC = () => {
                         {/* Akhir Bingkai Foto Melengkung */}
                         
                         {/* ✅ PERUBAHAN Teks: Nama */}
-                        <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>Pacar </h3>
+                        <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>Niken </h3>
                         
                         {/* ✅ PERUBAHAN Teks: Putrid Pertama */}
                         <p className={`${primaryTextColor} mb-4`} style={{fontFamily: "Markazi Text, serif"}}>Putri Pertama Dari Keluarga</p>
