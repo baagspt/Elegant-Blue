@@ -53,10 +53,10 @@ const CoverScreen: React.FC<CoverScreenProps> = ({
         </div>
 
         <h1 className="text-4xl md:text-6xl font-normal font-whisper tracking-tight mb-12">
-          Brian &amp; Niken
+          Sony &amp; Denise
         </h1>
 
-        <p className="text-sm font-light font-Alan-Sans mb-40">06.06.2026</p>
+        <p className="text-sm font-light font-Alan-Sans mb-40">08.05.2027</p>
 
         <div className="mb-8">
           <p className="text-sm md:text-base font-montserrat" style={{fontFamily: "Markazi Text, serif"}}>

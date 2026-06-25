@@ -89,7 +89,7 @@ const CoupleSection: React.FC = () => {
             <div 
                 className="absolute inset-0"
                 style={{
-                    backgroundImage: "url('/assets/images/bg1.jpg')",
+                    backgroundImage: "url('/assets/images/bg1.jpeg')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
@@ -108,11 +108,11 @@ const CoupleSection: React.FC = () => {
                     </div>
 
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal font-whisper tracking-tight mb-6 sm:mb-8">
-                        Brian &amp; Niken
+                        Sony &amp; Denise
                     </h1>
 
                     {/* Tanggal */}
-                    <p className="text-base sm:text-lg md:text-xl font-light font-Alan-Sans mb-16 sm:mb-24 md:mb-32" style={{fontFamily: "Markazi Text, serif"}}>06.06.2026</p> 
+                    <p className="text-base sm:text-lg md:text-xl font-light font-Alan-Sans mb-16 sm:mb-24 md:mb-32" style={{fontFamily: "Markazi Text, serif"}}>08.05.2027</p> 
                 </div>
             </div>
             
@@ -124,11 +124,11 @@ const CoupleSection: React.FC = () => {
                 
                     {/* Ayat Quran */}
                     <blockquote className="text-white text-sm sm:text-base italic font-serif mb-2 px-4" style={{fontFamily: "Markazi Text, serif"}}>
-                        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antarmu rasa kasih dan sayang."
+                    "Dengan kasih karunia Tuhan yang mempersatukan, Kami percaya bahwa cinta adalah anugerah terindah dari Tuhan.Kini, saatnya kami melangkah dalam ikatan kudus pernikahan, penuh syukur dan kerendahan hati"
                     </blockquote>
                     {/* Sumber Ayat */}
                     <cite className="text-white text-sm sm:text-base not-italic font-medium" style={{fontFamily: "Markazi Text, serif"}}>
-                        Q.S. Ar-Rum : 21
+                        
                     </cite>
                 </div>
             </div>
