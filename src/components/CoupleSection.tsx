@@ -14,7 +14,7 @@ interface TimeLeft {
 const calculateTimeLeft = (): TimeLeft => {
     // Tanggal target: 2026-02-02
     // PERBAIKAN: Mengubah format tanggal dari 'YYYY-M-DD' menjadi 'YYYY/MM/DD' untuk kompatibilitas mobile yang lebih baik.
-    const targetDate = '2026/06/06'; 
+    const targetDate = '2027/05/08'; 
     const difference = +new Date(targetDate) - +new Date(); 
     
     if (difference <= 0) {
@@ -108,7 +108,7 @@ const CoupleSection: React.FC = () => {
                     </div>
 
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal font-whisper tracking-tight mb-6 sm:mb-8">
-                        Sony &amp; Denise
+                        Ryan &amp; Dita
                     </h1>
 
                     {/* Tanggal */}
@@ -124,11 +124,11 @@ const CoupleSection: React.FC = () => {
                 
                     {/* Ayat Quran */}
                     <blockquote className="text-white text-sm sm:text-base italic font-serif mb-2 px-4" style={{fontFamily: "Markazi Text, serif"}}>
-                    "Dengan kasih karunia Tuhan yang mempersatukan, Kami percaya bahwa cinta adalah anugerah terindah dari Tuhan.Kini, saatnya kami melangkah dalam ikatan kudus pernikahan, penuh syukur dan kerendahan hati"
+                        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antarmu rasa kasih dan sayang."
                     </blockquote>
                     {/* Sumber Ayat */}
                     <cite className="text-white text-sm sm:text-base not-italic font-medium" style={{fontFamily: "Markazi Text, serif"}}>
-                        
+                        - QS. Ar-Rum 21 -
                     </cite>
                 </div>
             </div>

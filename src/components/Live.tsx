@@ -73,7 +73,7 @@ const Live: React.FC = () => {
                             className="text-3xl md:text-5xl font-normal tracking-tight mb-3" 
                             style={{ fontFamily: "Whisper, cursive" }} 
                         >
-                            Sony &amp; Denise
+                            Ryan &amp; Dita
                         </h1>
                         {/* 3. Jarak di bawah "02.02.2026" dihilangkan (mb-0) agar rapat dengan batas section bawah */}
                         <p className="text-sm font-bold font-Alan-Sans mb-0">08.05.2027</p>
