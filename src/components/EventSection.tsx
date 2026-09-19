@@ -3,7 +3,7 @@ import React from 'react';
 const EventSection: React.FC = () => {
     
     // MENGGUNAKAN TAUTAN GOOGLE MAPS DARI GAMBAR YANG ANDA BERIKAN
-    const mapLink = "https://maps.app.goo.gl/N8gHezkV5xduzzSH6";
+    const mapLink = "https://maps.app.goo.gl/95ggRWm29xfbycUh7";
     
     // Warna tombol baru: #2C363C
     const buttonColor = '#2C363C';
@@ -80,7 +80,7 @@ const EventSection: React.FC = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span style={{ fontFamily: "Markazi Text, serif" }}>Jln. Cemara Wangi RT 4 RW 5 ( Depan Balaidesa Sidumulyo), Kota Batu, Malang, Jawa Timur</span>
+                                <span style={{ fontFamily: "Markazi Text, serif" }}>Jln. Cemara Wangi RT 4 RW 5 ( Depan Balaidesa Sidumulyo), Kota Batu, Malang</span>
                             </div>
                             
                             {/* ✅ PERUBAHAN 9: Tombol Klik Maps diubah menggunakan buttonColor (#2C363C) dan hoverColor (#1F282C) */}
@@ -124,8 +124,8 @@ const EventSection: React.FC = () => {
                             
                             {/* Waktu dan Lokasi */}
                             {/* ✅ PERUBAHAN 17: Waktu diubah menjadi text-[#2C363C] */}
-                            <p className={`${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Pukul 12.00 - 17.00</p>
-                            <p className={`${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Jam Pedang Pora : 14.00 - Selesai</p>
+                            <p className={`${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Pukul 12.00 - Selesai</p>
+                            
                             {/* ✅ PERUBAHAN 18: Ikon lokasi dan teks lokasi diubah menjadi text-[#2C363C] */}
                             <div className={`flex items-center justify-center ${primaryTextColor} mb-4`}>
                                 {/* ✅ PERUBAHAN: Warna stroke ikon diubah menjadi #2C363C */}
@@ -133,7 +133,7 @@ const EventSection: React.FC = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span style={{ fontFamily: "Markazi Text, serif" }}>Jln. Cemara Wangi RT 4 RW 5 ( Depan Balaidesa Sidumulyo), Kota Batu, Malang, Jawa Timur</span>
+                                <span style={{ fontFamily: "Markazi Text, serif" }}>Jln. Cemara Wangi RT 4 RW 5 ( Depan Balaidesa Sidumulyo), Kota Batu</span>
                             </div>
                             
                             {/* ✅ PERUBAHAN 19: Tombol Klik Maps diubah menggunakan buttonColor (#2C363C) dan hoverColor (#1F282C) */}
