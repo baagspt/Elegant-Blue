@@ -66,7 +66,7 @@ const BrideSection: React.FC = () => {
                             }}
                         >
                             <img 
-                                src="/assets/images/bride.jpg" 
+                                src="/assets/images/bride.jfif"
                                 alt="Groom" 
                                 className="absolute inset-0 w-full h-full object-cover"
                             />

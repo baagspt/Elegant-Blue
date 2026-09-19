@@ -64,7 +64,7 @@ const GroomSection: React.FC = () => {
                             }}
                         >
                             <img 
-                                src="/assets/images/groom.jpg" 
+                                src="/assets/images/groom.jfif"
                                 alt="Groom" 
                                 className="absolute inset-0 w-full h-full object-cover"
                             />

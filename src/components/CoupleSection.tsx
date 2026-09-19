@@ -75,10 +75,10 @@ const CountdownTimer: React.FC = () => {
 
 const CoupleSection: React.FC = () => {
     const images: string[] = [
-        "/assets/images/sample3.jpg",
-        "/assets/images/sample3.jpg",
-        "/assets/images/sample3.jpg",
-        "/assets/images/sample3.jpg"
+        "/assets/images/couple.jfif",
+        "/assets/images/couple.jfif",
+        "/assets/images/couple.jfif",
+        "/assets/images/couple.jfif"
     ];
 
     const duplicatedImages = [...images, ...images, ...images, ...images];
