@@ -89,7 +89,7 @@ const CoupleSection: React.FC = () => {
             <div 
                 className="absolute inset-0"
                 style={{
-                    backgroundImage: "url('/assets/images/bg1.jpeg')",
+                    backgroundImage: "url('/assets/images/bg1.jfif')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
