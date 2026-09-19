@@ -295,7 +295,7 @@ const RSVPSection: FC = () => {
                         
                         {/* Teks ini berwarna putih */}
                         <p className="text-l max-w-2xl mx-auto tracking-wider font-markazi" style={{ color: TEXT_WHITE_COLOR }}>
-                            Tolong konfirmasi kehadiran sebelum tanggal 8 Mei 2027
+                            Tolong konfirmasi kehadiran sebelum tanggal 25 September 2026
                         
                         </p>
                     </div>

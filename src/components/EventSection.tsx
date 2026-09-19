@@ -62,13 +62,13 @@ const EventSection: React.FC = () => {
                                 Akad Nikah
                             </h3>
                             {/* ✅ PERUBAHAN 3: Hari diubah menjadi text-[#2C363C] */}
-                            <p className={`text-xl ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>Sabtu</p>
+                            <p className={`text-xl ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>Jumat</p>
                             {/* ✅ PERUBAHAN 4: Divider horizontal diubah menjadi border-[#2C363C] */}
                             <hr className="w-16 mx-auto border-[#2C363C] mb-2" /> 
                             {/* ✅ PERUBAHAN 5: Tanggal diubah menjadi text-[#2C363C] */}
-                            <p className={`text-5xl md:text-6xl font-bold ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>08</p>
+                            <p className={`text-5xl md:text-6xl font-bold ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>25</p>
                             {/* ✅ PERUBAHAN 6: Bulan/Tahun diubah menjadi text-[#2C363C] */}
-                            <p className={`text-xl ${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Mei 2027</p>
+                            <p className={`text-xl ${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>September 2026</p>
                             
                             {/* Waktu dan Lokasi */}
                             {/* ✅ PERUBAHAN 7: Waktu diubah menjadi text-[#2C363C] */}
@@ -114,13 +114,13 @@ const EventSection: React.FC = () => {
                                 Resepsi
                             </h3>
                             {/* ✅ PERUBAHAN 13: Hari diubah menjadi text-[#2C363C] */}
-                            <p className={`text-xl ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>Sabtu</p>
+                            <p className={`text-xl ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>Jumat</p>
                             {/* ✅ PERUBAHAN 14: Divider horizontal diubah menjadi border-[#2C363C] */}
                             <hr className="w-16 mx-auto border-[#2C363C] mb-2" />
                             {/* ✅ PERUBAHAN 15: Tanggal diubah menjadi text-[#2C363C] */}
-                            <p className={`text-5xl md:text-6xl font-bold ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>08</p>
+                            <p className={`text-5xl md:text-6xl font-bold ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>25</p>
                             {/* ✅ PERUBAHAN 16: Bulan/Tahun diubah menjadi text-[#2C363C] */}
-                            <p className={`text-xl ${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Mei 2027</p>
+                            <p className={`text-xl ${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>September 2026</p>
                             
                             {/* Waktu dan Lokasi */}
                             {/* ✅ PERUBAHAN 17: Waktu diubah menjadi text-[#2C363C] */}

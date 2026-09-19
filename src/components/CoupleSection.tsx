@@ -12,9 +12,9 @@ interface TimeLeft {
 }
 
 const calculateTimeLeft = (): TimeLeft => {
-    // Tanggal target: 2026-02-02
+    // Tanggal target: 2026-09-25
     // PERBAIKAN: Mengubah format tanggal dari 'YYYY-M-DD' menjadi 'YYYY/MM/DD' untuk kompatibilitas mobile yang lebih baik.
-    const targetDate = '2027/05/08'; 
+    const targetDate = '2026/09/25'; 
     const difference = +new Date(targetDate) - +new Date(); 
     
     if (difference <= 0) {
@@ -112,7 +112,7 @@ const CoupleSection: React.FC = () => {
                     </h1>
 
                     {/* Tanggal */}
-                    <p className="text-base sm:text-lg md:text-xl font-light font-Alan-Sans mb-16 sm:mb-24 md:mb-32" style={{fontFamily: "Markazi Text, serif"}}>08.05.2027</p> 
+                    <p className="text-base sm:text-lg md:text-xl font-light font-Alan-Sans mb-16 sm:mb-24 md:mb-32" style={{fontFamily: "Markazi Text, serif"}}>25.09.2026</p>
                 </div>
             </div>
             

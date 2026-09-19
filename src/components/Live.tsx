@@ -75,8 +75,8 @@ const Live: React.FC = () => {
                         >
                             Arya &amp; Shinta
                         </h1>
-                        {/* 3. Jarak di bawah "02.02.2026" dihilangkan (mb-0) agar rapat dengan batas section bawah */}
-                        <p className="text-sm font-bold font-Alan-Sans mb-0">08.05.2027</p>
+                        {/* 3. Jarak di bawah tanggal dihilangkan (mb-0) agar rapat dengan batas section bawah */}
+                        <p className="text-sm font-bold font-Alan-Sans mb-0">25.09.2026</p>
                     </div>
                     {/* ============================================= */}
 
