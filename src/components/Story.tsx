@@ -174,21 +174,21 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 const Story: React.FC = () => {
     const loveStoryEvents = [
         {
-            date: '12 September 2017',
+            date: '2020',
             title: 'Awal Bertemu',
-            description: 'Tahun di mana dia dikenalkan oleh rekan kerjanya yang juga temanku melalui sosial media.',
+            description: '-',
             imageUrl: '/assets/images/s1.jpg',
         },
         {
-            date: '20 June 2018',
+            date: '2020',
             title: 'Kencan Pertama',
-            description: 'Sebuah janji pertemuan yang canggung namun berkesan, menjadi awal dari segalanya.',
+            description: '-',
             imageUrl: '/assets/images/s2.jpg',
         },
         {
-            date: '25 December 2020',
+            date: '2026',
             title: 'Lamaran',
-            description: 'Di penghujung tahun, sebuah pertanyaan besar diajukan, dan jawaban "Ya" membawa kami ke langkah selanjutnya.',
+            description: '',
             imageUrl: '/assets/images/s3.jpg',
         },
     ];
