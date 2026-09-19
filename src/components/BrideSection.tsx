@@ -77,7 +77,7 @@ const BrideSection: React.FC = () => {
                         <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>Shinta</h3>
                         
                         {/* ✅ PERUBAHAN Teks: Putrid Pertama */}
-                        <p className={`${primaryTextColor} mb-4`} style={{fontFamily: "Markazi Text, serif"}}>Putri Pertama Dari Keluarga</p>
+                        <p className={`${primaryTextColor} mb-4`} style={{fontFamily: "Markazi Text, serif"}}>Putri Dari Keluarga</p>
                         
                         {/* ✅ PERUBAHAN Teks: Nama Orang Tua */}
                         <p className={`${primaryTextColor} mb-0 pb-12`} style={{fontFamily: "Markazi Text, serif"}}>Bapak & Ibu</p> 

@@ -75,7 +75,7 @@ const GroomSection: React.FC = () => {
                         <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>Arya</h3>
                         
                         {/* ✅ PERUBAHAN 4: Teks 'Putra Kedua Dari Keluarga' diubah menjadi text-[#2C363C] */}
-                        <p className={`${primaryTextColor} mb-4`} style={{fontFamily: "Markazi Text, serif"}}>Putra Kedua Dari Keluarga</p>
+                        <p className={`${primaryTextColor} mb-4`} style={{fontFamily: "Markazi Text, serif"}}>Putra Dari Keluarga</p>
                         
                         {/* ✅ PERUBAHAN 5: Teks 'Bapak Milenia & Ibu Story' diubah menjadi text-[#2C363C] */}
                         <p className={`${primaryTextColor} mb-0 pb-12`} style={{fontFamily: "Markazi Text, serif"}}>Bapak & Ibu</p>
