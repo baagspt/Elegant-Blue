@@ -5,7 +5,7 @@ const Live: React.FC = () => {
     const TEXT_COLOR = '#2C363C';
     
     // === ID VIDEO YOUTUBE (Video Vertikal) ===
-    const YOUTUBE_VIDEO_ID = 'XY9JR07il_U'; 
+    const YOUTUBE_VIDEO_ID = 'rCJwHEf6UjY'; 
     
     // URL embed untuk ditampilkan di iframe
     const youtubeEmbedUrl = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&rel=0`;
