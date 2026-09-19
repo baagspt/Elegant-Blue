@@ -53,7 +53,7 @@ const CoverScreen: React.FC<CoverScreenProps> = ({
         </div>
 
         <h1 className="text-4xl md:text-6xl font-normal font-whisper tracking-tight mb-12">
-          Ryan &amp; Dita
+          Arya &amp; Shinta
         </h1>
 
         <p className="text-sm font-light font-Alan-Sans mb-40">08.05.2027</p>

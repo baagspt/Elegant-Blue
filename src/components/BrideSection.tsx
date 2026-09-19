@@ -74,7 +74,7 @@ const BrideSection: React.FC = () => {
                         {/* Akhir Bingkai Foto Melengkung */}
                         
                         {/* ✅ PERUBAHAN Teks: Nama */}
-                        <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>Dita Cahyani</h3>
+                        <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>Shinta</h3>
                         
                         {/* ✅ PERUBAHAN Teks: Putrid Pertama */}
                         <p className={`${primaryTextColor} mb-4`} style={{fontFamily: "Markazi Text, serif"}}>Putri Pertama Dari Keluarga</p>

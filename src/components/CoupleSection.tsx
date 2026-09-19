@@ -108,7 +108,7 @@ const CoupleSection: React.FC = () => {
                     </div>
 
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal font-whisper tracking-tight mb-6 sm:mb-8">
-                        Ryan &amp; Dita
+                        Arya &amp; Shinta
                     </h1>
 
                     {/* Tanggal */}

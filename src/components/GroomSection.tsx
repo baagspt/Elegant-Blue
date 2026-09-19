@@ -72,7 +72,7 @@ const GroomSection: React.FC = () => {
                         {/* Akhir Bingkai Foto Melengkung */}
                         
                         {/* ✅ PERUBAHAN 3: Nama 'Yudhistira' diubah menjadi text-[#2C363C] */}
-                        <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>Andrian Bagas Saputra</h3>
+                        <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>Arya</h3>
                         
                         {/* ✅ PERUBAHAN 4: Teks 'Putra Kedua Dari Keluarga' diubah menjadi text-[#2C363C] */}
                         <p className={`${primaryTextColor} mb-4`} style={{fontFamily: "Markazi Text, serif"}}>Putra Kedua Dari Keluarga</p>

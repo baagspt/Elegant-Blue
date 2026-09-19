@@ -15,8 +15,8 @@ const useGuestNameFromUrl = (): string => {
 
 const QRSection: React.FC = () => {
     const names = {
-        bride: "Dita", 
-        groom: "Ryan", 
+        bride: "Shinta", 
+        groom: "Arya", 
     };
     
     const coupleNameForScan = `${names.bride}_${names.groom}`;
