@@ -66,7 +66,7 @@ const BrideSection: React.FC<{ weddingData: InvitationData }> = ({ weddingData }
                                 borderRadius: '20rem 20rem 0 0', 
                             }}
                         >
-                            <img 
+                            <img
                                 src={weddingData.images.bride}
                                 alt={weddingData.brideName}
                                 className="absolute inset-0 w-full h-full object-cover"
