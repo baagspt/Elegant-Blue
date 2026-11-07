@@ -1,9 +1,7 @@
 import React from 'react';
+import { safeExternalUrl, type InvitationData } from '../firebase/invitationTypes';
 
-const EventSection: React.FC = () => {
-    
-    // MENGGUNAKAN TAUTAN GOOGLE MAPS DARI GAMBAR YANG ANDA BERIKAN
-    const mapLink = "https://maps.app.goo.gl/N8gHezkV5xduzzSH6";
+const EventSection: React.FC<{ weddingData: InvitationData }> = ({ weddingData }) => {
     
     // Warna tombol baru: #2C363C
     const buttonColor = '#2C363C';
@@ -26,7 +24,7 @@ const EventSection: React.FC = () => {
             <div className="container mx-auto px-4 text-center mb-6 md:mb-16">
                 <div className="mb-4">
                     <img 
-                        src="/assets/images/weddingevent.png" 
+                        src={weddingData.images.eventHeading}
                         alt="Wedding Event" 
                         className="mx-auto max-w-[200px] md:max-w-[280px]"
                     />
@@ -59,20 +57,20 @@ const EventSection: React.FC = () => {
                             
                             {/* ✅ PERUBAHAN 2: Judul 'Akad Nikah' diubah menjadi text-[#2C363C] */}
                             <h3 className={`text-4xl md:text-5xl font-script ${primaryTextColor} mb-6`} style={{ fontFamily: "Markazi Text, serif" }}>
-                                Akad Nikah
+                                {weddingData.ceremonyTitle}
                             </h3>
                             {/* ✅ PERUBAHAN 3: Hari diubah menjadi text-[#2C363C] */}
-                            <p className={`text-xl ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>Sabtu</p>
+                            <p className={`text-xl ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.ceremonyWeekday}</p>
                             {/* ✅ PERUBAHAN 4: Divider horizontal diubah menjadi border-[#2C363C] */}
                             <hr className="w-16 mx-auto border-[#2C363C] mb-2" /> 
                             {/* ✅ PERUBAHAN 5: Tanggal diubah menjadi text-[#2C363C] */}
-                            <p className={`text-5xl md:text-6xl font-bold ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>08</p>
+                            <p className={`text-5xl md:text-6xl font-bold ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.ceremonyDay}</p>
                             {/* ✅ PERUBAHAN 6: Bulan/Tahun diubah menjadi text-[#2C363C] */}
-                            <p className={`text-xl ${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Mei 2027</p>
+                            <p className={`text-xl ${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.ceremonyMonthYear}</p>
                             
                             {/* Waktu dan Lokasi */}
                             {/* ✅ PERUBAHAN 7: Waktu diubah menjadi text-[#2C363C] */}
-                            <p className={`${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Pukul 09.00 - Selesai</p>
+                            <p className={`${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.ceremonyTime}</p>
                             {/* ✅ PERUBAHAN 8: Ikon lokasi dan teks lokasi diubah menjadi text-[#2C363C] */}
                             <div className={`flex items-center justify-center ${primaryTextColor} mb-4`}>
                                 {/* ✅ PERUBAHAN: Warna stroke ikon diubah menjadi #2C363C */}
@@ -80,12 +78,12 @@ const EventSection: React.FC = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span style={{ fontFamily: "Markazi Text, serif" }}>Gedung Graha Mojokerto Service City Lt.4 </span>
+                                <span style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.ceremonyLocation}</span>
                             </div>
                             
                             {/* ✅ PERUBAHAN 9: Tombol Klik Maps diubah menggunakan buttonColor (#2C363C) dan hoverColor (#1F282C) */}
                             <a 
-                                href={mapLink} 
+                                href={safeExternalUrl(weddingData.ceremonyMapLink)}
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="inline-flex items-center px-6 py-3 text-white text-sm font-medium rounded-full shadow-lg transition-colors"
@@ -111,21 +109,21 @@ const EventSection: React.FC = () => {
                             
                             {/* ✅ PERUBAHAN 12: Judul 'Resepsi' diubah menjadi text-[#2C363C] */}
                             <h3 className={`text-4xl md:text-5xl font-script ${primaryTextColor} mb-6`} style={{ fontFamily: "Markazi Text, serif" }}>
-                                Resepsi
+                                {weddingData.receptionTitle}
                             </h3>
                             {/* ✅ PERUBAHAN 13: Hari diubah menjadi text-[#2C363C] */}
-                            <p className={`text-xl ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>Sabtu</p>
+                            <p className={`text-xl ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.receptionWeekday}</p>
                             {/* ✅ PERUBAHAN 14: Divider horizontal diubah menjadi border-[#2C363C] */}
                             <hr className="w-16 mx-auto border-[#2C363C] mb-2" />
                             {/* ✅ PERUBAHAN 15: Tanggal diubah menjadi text-[#2C363C] */}
-                            <p className={`text-5xl md:text-6xl font-bold ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>08</p>
+                            <p className={`text-5xl md:text-6xl font-bold ${primaryTextColor} mb-2`} style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.receptionDay}</p>
                             {/* ✅ PERUBAHAN 16: Bulan/Tahun diubah menjadi text-[#2C363C] */}
-                            <p className={`text-xl ${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Mei 2027</p>
+                            <p className={`text-xl ${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.receptionMonthYear}</p>
                             
                             {/* Waktu dan Lokasi */}
                             {/* ✅ PERUBAHAN 17: Waktu diubah menjadi text-[#2C363C] */}
-                            <p className={`${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Pukul 12.00 - 17.00</p>
-                            <p className={`${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>Jam Pedang Pora : 14.00 - Selesai</p>
+                            <p className={`${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.receptionTime}</p>
+                            <p className={`${primaryTextColor} mb-4`} style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.receptionExtraTime}</p>
                             {/* ✅ PERUBAHAN 18: Ikon lokasi dan teks lokasi diubah menjadi text-[#2C363C] */}
                             <div className={`flex items-center justify-center ${primaryTextColor} mb-4`}>
                                 {/* ✅ PERUBAHAN: Warna stroke ikon diubah menjadi #2C363C */}
@@ -133,12 +131,12 @@ const EventSection: React.FC = () => {
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
-                                <span style={{ fontFamily: "Markazi Text, serif" }}>Gedung Graha Mojokerto Service City Lt.4</span>
+                                <span style={{ fontFamily: "Markazi Text, serif" }}>{weddingData.receptionLocation}</span>
                             </div>
                             
                             {/* ✅ PERUBAHAN 19: Tombol Klik Maps diubah menggunakan buttonColor (#2C363C) dan hoverColor (#1F282C) */}
                             <a 
-                                href={mapLink} 
+                                href={safeExternalUrl(weddingData.receptionMapLink)}
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="inline-flex items-center px-6 py-3 text-white text-sm font-medium rounded-full shadow-lg transition-colors"

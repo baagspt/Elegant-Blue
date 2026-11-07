@@ -1,11 +1,12 @@
 import React from 'react';
+import type { InvitationData } from '../firebase/invitationTypes';
 
-const Live: React.FC = () => {
+const Live: React.FC<{ weddingData: InvitationData }> = ({ weddingData }) => {
     // Warna Teks Baru
     const TEXT_COLOR = '#2C363C';
     
     // === ID VIDEO YOUTUBE (Video Vertikal) ===
-    const YOUTUBE_VIDEO_ID = 'XY9JR07il_U'; 
+    const YOUTUBE_VIDEO_ID = weddingData.youtubeVideoId;
     
     // URL embed untuk ditampilkan di iframe
     const youtubeEmbedUrl = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&rel=0`;
@@ -25,7 +26,7 @@ const Live: React.FC = () => {
                     {/* Header with icon */}
                     <div className="mb-8">
                         <img 
-                            src="/assets/images/live.png" 
+                            src={weddingData.images.liveHeading}
                             alt="Live Streaming" 
                             className="mx-auto max-w-[200px] md:max-w-[280px]"
                         />
@@ -37,7 +38,7 @@ const Live: React.FC = () => {
                         className="text-base leading-relaxed mb-8" 
                         style={{ fontFamily: "Markazi Text, serif", color: TEXT_COLOR }}
                     >
-                        Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/I berkenan hadir untuk memberikan doa restu kepada kedua mempelai
+                        {weddingData.liveDescription}
                     </p>
                     
                     {/* Live stream embed - TETAP ADA */}
@@ -64,7 +65,7 @@ const Live: React.FC = () => {
                                 className="text-xs md:text-sm tracking-widest font-bold" 
                                 style={{ fontFamily: "Montserrat, sans-serif" }} 
                             >
-                                The Wedding Of
+                                {weddingData.weddingLabel}
                             </p>
                         </div>
 
@@ -73,10 +74,10 @@ const Live: React.FC = () => {
                             className="text-3xl md:text-5xl font-normal tracking-tight mb-3" 
                             style={{ fontFamily: "Whisper, cursive" }} 
                         >
-                            Ryan &amp; Dita
+                            {weddingData.groomName} &amp; {weddingData.brideName}
                         </h1>
                         {/* 3. Jarak di bawah "02.02.2026" dihilangkan (mb-0) agar rapat dengan batas section bawah */}
-                        <p className="text-sm font-bold font-Alan-Sans mb-0">08.05.2027</p>
+                        <p className="text-sm font-bold font-Alan-Sans mb-0">{weddingData.dateLabel}</p>
                     </div>
                     {/* ============================================= */}
 

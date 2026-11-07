@@ -1,6 +1,7 @@
 import React from 'react';
+import type { InvitationData } from '../firebase/invitationTypes';
 
-const GroomSection: React.FC = () => {
+const GroomSection: React.FC<{ weddingData: InvitationData }> = ({ weddingData }) => {
     // Definisi warna utama agar mudah diubah
     const primaryTextColor = "text-[#2C363C]";
     const primaryColor = "#2C363C"; 
@@ -64,21 +65,21 @@ const GroomSection: React.FC = () => {
                             }}
                         >
                             <img 
-                                src="/assets/images/groom.jpg" 
-                                alt="Groom" 
+                                src={weddingData.images.groom}
+                                alt={weddingData.groomName}
                                 className="absolute inset-0 w-full h-full object-cover"
                             />
                         </div>
                         {/* Akhir Bingkai Foto Melengkung */}
                         
                         {/* ✅ PERUBAHAN 3: Nama 'Yudhistira' diubah menjadi text-[#2C363C] */}
-                        <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>Andrian Bagas Saputra</h3>
+                        <h3 className={`text-2xl md:text-3xl font-medium ${primaryTextColor} mb-2`} style={{fontFamily: "Markazi Text, serif"}}>{weddingData.groomName}</h3>
                         
                         {/* ✅ PERUBAHAN 4: Teks 'Putra Kedua Dari Keluarga' diubah menjadi text-[#2C363C] */}
-                        <p className={`${primaryTextColor} mb-4`} style={{fontFamily: "Markazi Text, serif"}}>Putra Kedua Dari Keluarga</p>
+                        <p className={`${primaryTextColor} mb-4`} style={{fontFamily: "Markazi Text, serif"}}>{weddingData.groomRole}</p>
                         
                         {/* ✅ PERUBAHAN 5: Teks 'Bapak Milenia & Ibu Story' diubah menjadi text-[#2C363C] */}
-                        <p className={`${primaryTextColor} mb-0 pb-12`} style={{fontFamily: "Markazi Text, serif"}}>Bapak & Ibu</p>
+                        <p className={`${primaryTextColor} mb-0 pb-12`} style={{fontFamily: "Markazi Text, serif"}}>{weddingData.groomParents}</p>
                     </div>
                 </div>
                 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import type { InvitationData } from '../firebase/invitationTypes';
 
 // Fungsi untuk menangani penyalinan teks ke clipboard
 const copyToClipboard = (text: string, label: string) => {
@@ -11,7 +12,7 @@ const copyToClipboard = (text: string, label: string) => {
     });
 };
 
-const GiftSection: React.FC = () => {
+const GiftSection: React.FC<{ weddingData: InvitationData }> = ({ weddingData }) => {
     // State untuk mengontrol apakah bagian Cashless/Alamat terlihat
     const [isCashlessVisible, setIsCashlessVisible] = useState(false);
 
@@ -24,16 +25,6 @@ const GiftSection: React.FC = () => {
     const TEXT_COLOR = '#2C363C';
 
     // Data dummy (ganti dengan data sebenarnya)
-    const rekeningData = {
-        bank: "Bank BCA / QRIS / Seabank",
-        nomor: "1234567890",
-        atasNama: "Nama Mempelai Pria/Wanita" 
-    };
-    const alamatData = {
-        judul: "Kota Mojokerto, Jawa Timur",
-        detail: "Jl. Veteran, Mergelo, Magersari, Kec. Magersari, Kota Mojokerto, Jawa Timur 61324" 
-    };
-
     const handleGiftButtonClick = () => {
         // Toggle visibilitas konten
         setIsCashlessVisible(prev => !prev);
@@ -86,7 +77,7 @@ const GiftSection: React.FC = () => {
                     {/* --- HEADER --- */}
                     <div className="mb-4">
                         <img 
-                            src="/assets/images/weddinggift.png" 
+                            src={weddingData.images.giftHeading}
                             alt="Wedding Gift" 
                             className="mx-auto max-w-[200px] md:max-w-[280px]"
                         />
@@ -94,7 +85,7 @@ const GiftSection: React.FC = () => {
                     
                     {/* Deskripsi */}
                     <p className="text-base leading-relaxed mt-8 mb-12" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>
-                        Doa restu anda merupakan karunia yang sangat berarti bagi kami, dan jika memberi adalah ungkapan tanda kasih anda, anda dapat memberi kado secara cashless.
+                        {weddingData.giftDescription}
                     </p>
                     
                     {/* --- Bagian KLIK WEDDING GIFT (Tombol Utama) --- */}
@@ -126,12 +117,12 @@ const GiftSection: React.FC = () => {
                             <div className="bg-white p-8 rounded-xl shadow-lg">
                                 <h3 className="text-3xl font-['Playfair_Display',serif] italic font-light mb-6" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>Rekening</h3>
                                 
-                                <p className="text-lg font-medium" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{rekeningData.bank}</p>
-                                <p className="text-2xl font-bold mb-4" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{rekeningData.nomor}</p>
+                                <p className="text-lg font-medium" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{weddingData.bankName}</p>
+                                <p className="text-2xl font-bold mb-4" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{weddingData.bankAccount}</p>
                                 
                                 {/* Tombol Salin Rekening - Menggunakan renderCustomButton (warna hover baru) */}
                                 {renderCustomButton(
-                                    () => copyToClipboard(rekeningData.nomor, 'Nomor Rekening'),
+                                    () => copyToClipboard(weddingData.bankAccount, 'Nomor Rekening'),
                                     <svg className="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
                                         <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2h2V5a2 2 0 012-2h6a2 2 0 00-2-2H5z" />
@@ -139,13 +130,13 @@ const GiftSection: React.FC = () => {
                                     'Salin Rekening'
                                 )}
                                 
-                                <p className="text-base mt-4" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>an. **{rekeningData.atasNama}**</p>
+                                <p className="text-base mt-4" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>an. **{weddingData.bankHolder}**</p>
                                 
                                 {/* Gambar-gambar bank */}
                                 <div className="flex justify-center space-x-4 mt-4">
-                                    <img src="/assets/images/BCA.png" alt="BCA" className="h-12 object-contain"/>
-                                    <img src="/assets/images/QRIS2.png" alt="QRIS" className="h-12 object-contain"/>
-                                    <img src="/assets/images/Seabank.png" alt="Seabank" className="h-12 object-contain"/>
+                                    <img src={weddingData.images.bankBca} alt="BCA" className="h-12 object-contain"/>
+                                    <img src={weddingData.images.bankQris} alt="QRIS" className="h-12 object-contain"/>
+                                    <img src={weddingData.images.bankSeabank} alt="Seabank" className="h-12 object-contain"/>
                                 </div>
                             </div>
 
@@ -154,11 +145,11 @@ const GiftSection: React.FC = () => {
                                 <h3 className="text-3xl font-['Playfair_Display',serif] italic font-light mb-6" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>Kirim Kado</h3>
                                 
                                 <p className="text-lg font-medium" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>Alamat</p>
-                                <p className="text-2xl font-normal mb-4" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{alamatData.judul}</p> 
+                                <p className="text-2xl font-normal mb-4" style={{fontFamily: "Markazi Text, serif", color: TEXT_COLOR}}>{weddingData.giftAddressTitle}</p>
                                 
                                 {/* Tombol Salin Alamat - Menggunakan renderCustomButton (warna hover baru) */}
                                 {renderCustomButton(
-                                    () => copyToClipboard(alamatData.detail, 'Alamat'),
+                                    () => copyToClipboard(weddingData.giftAddress, 'Alamat'),
                                     <svg className="mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
                                         <path d="M5 3a2 2 0 00-2 2v6a2 2 0 002 2h2V5a2 2 0 012-2h6a2 2 0 00-2-2H5z" />
@@ -177,7 +168,7 @@ const GiftSection: React.FC = () => {
                         </p>
                         {/* Tombol Konfirmasi Via WA - Menggunakan renderCustomLink (warna hover baru) */}
                         {renderCustomLink(
-                            "https://wa.me/6289528048690", // Ganti dengan nomor WhatsApp Anda
+                            `https://wa.me/${weddingData.giftWhatsapp.replace(/\D/g, "")}`,
                             <svg className="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM8 12.5a.5.5 0 011 0V10a.5.5 0 01-1 0v2.5zM12 12.5a.5.5 0 011 0V10a.5.5 0 01-1 0v2.5z" />
                                 <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7.3-3.7a.5.5 0 01.4-.2c.5.1 1.1.2 1.6.2.6 0 1.1-.1 1.6-.2a.5.5 0 01.4.2L16 8.5a.5.5 0 01-.1.7l-1.3 1.3a.5.5 0 01-.4.1.5.5 0 01-.4-.2l-.6-.8a.5.5 0 00-.7 0l-.6.8a.5.5 0 01-.4.2.5.5 0 01-.4-.1L7.5 9a.5.5 0 01-.1-.7l1.3-1.3a.5.5 0 01.4-.2.5.5 0 01.4.2c.5.1 1.1.2 1.6.2.6 0 1.1-.1 1.6-.2a.5.5 0 01.4.2L16 8.5a.5.5 0 01-.1.7l-1.3 1.3a.5.5 0 01-.4.1.5.5 0 01-.4-.2l-.6-.8a.5.5 0 00-.7 0l-.6.8a.5.5 0 01-.4.2.5.5 0 01-.4-.1L7.5 9a.5.5 0 01-.1-.7l1.3-1.3a.5.5 0 01.4-.2.5.5 0 01.4.2z" clipRule="evenodd" />

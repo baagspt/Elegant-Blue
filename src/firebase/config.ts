@@ -1,6 +1,7 @@
 import { initializeApp, getApps, FirebaseApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore'; 
+import { getStorage } from 'firebase/storage';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -21,19 +22,20 @@ if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
   console.error(
     "FATAL ERROR: Firebase keys are missing!"
   );
-  // Dalam lingkungan live, ini akan mencegah aplikasi mencoba inisiasi yang pasti gagal.
 }
 
-
 // Mencegah error "Firebase: Firebase App named '[DEFAULT]' already exists" (app/duplicate-app) 
-// yang sering terjadi saat Fast Refresh/Hot Module Replacement (HMR) diaktifkan.
 const app: FirebaseApp = getApps().length === 0 
   ? initializeApp(firebaseConfig) 
   : getApps()[0];
+const rsvpApp = getApps().find((existingApp) => existingApp.name === 'rsvp')
+  ?? initializeApp(firebaseConfig, 'rsvp');
 
 // Inisiasi layanan agar siap digunakan
 export const db = getFirestore(app);
 export const auth = getAuth(app); // Jika Anda menggunakan Auth
+export const rsvpAuth = getAuth(rsvpApp);
+export const storage = getStorage(app);
 
 // Ekspor instance app
-export default app; 
+export default app;

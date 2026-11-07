@@ -1,6 +1,7 @@
 import React, { useState, useEffect, FC } from 'react';
 import { signInAnonymously, onAuthStateChanged, User } from 'firebase/auth'; 
-import { auth, db } from '../firebase/config';
+import { db, rsvpAuth } from '../firebase/config';
+import type { InvitationData } from '../firebase/invitationTypes';
 import { 
     collection, query, onSnapshot, addDoc, 
     Timestamp, orderBy, CollectionReference, DocumentData, 
@@ -35,7 +36,7 @@ const NEW_COLOR_SHADOW_MEDIUM = `${SHADOW_BASE_COLOR}40`; // Shadow sedang untuk
 
 
 // Komponen Utama Aplikasi
-const RSVPSection: FC = () => {
+const RSVPSection: FC<{ invitationSlug: string; weddingData: InvitationData }> = ({ invitationSlug, weddingData }) => {
     // --- State Management ---
     const [guestName, setGuestName] = useState<string>('');
     const [attendance, setAttendance] = useState<'yes' | 'no' | ''>('');
@@ -47,7 +48,7 @@ const RSVPSection: FC = () => {
     const [isLoadingMessages, setIsLoadingMessages] = useState<boolean>(true);
     const [displayLimit, setDisplayLimit] = useState(INITIAL_LIMIT); 
 
-    const PUBLIC_COLLECTION_PATH = `rsvps`;
+    const PUBLIC_COLLECTION_PATH = `invitations/${invitationSlug}/rsvps`;
 
     // UTILITY: Mengambil nilai 'to' dari URL
     const getGuestNameFromUrl = (): string => {
@@ -64,7 +65,7 @@ const RSVPSection: FC = () => {
         try {
             let user: User | null = initialUser;
             if (!user) {
-                const result = await signInAnonymously(auth);
+                const result = await signInAnonymously(rsvpAuth);
                 user = result.user;
             }
             if (user) {
@@ -88,13 +89,13 @@ const RSVPSection: FC = () => {
         if (urlName) {
             setGuestName(urlName);
         }
-        if (!auth) {
+        if (!rsvpAuth) {
             setSubmitStatus("Error: Firebase Auth tidak diinisialisasi.");
             setIsAuthReady(true);
             return;
         }
         let isMounted = true; 
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(rsvpAuth, (user) => {
             if (!isMounted) return;
             if (!isAuthReady) { 
                 handleAuth(user);
@@ -243,7 +244,7 @@ const RSVPSection: FC = () => {
         try {
             const date = timestamp.toDate();
             return date.toLocaleString('id-ID', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-        } catch (e) {
+        } catch {
             return 'Baru saja';
         }
     };
@@ -286,7 +287,7 @@ const RSVPSection: FC = () => {
                     <div className="text-center mb-10">
                         <div className="mb-4">
                         <img 
-                            src="/assets/images/doa.png" 
+                            src={weddingData.images.rsvpHeading}
                             alt="Doa" 
                             className="mx-auto max-w-[200px] md:max-w-[280px]"
                             onError={(e) => e.currentTarget.style.display = 'none'} 
@@ -295,7 +296,7 @@ const RSVPSection: FC = () => {
                         
                         {/* Teks ini berwarna putih */}
                         <p className="text-l max-w-2xl mx-auto tracking-wider font-markazi" style={{ color: TEXT_WHITE_COLOR }}>
-                            Tolong konfirmasi kehadiran sebelum tanggal 8 Mei 2027
+                            {weddingData.rsvpDeadlineText}
                         
                         </p>
                     </div>
@@ -317,7 +318,7 @@ const RSVPSection: FC = () => {
                         style={{ boxShadow: `0 25px 50px -12px ${NEW_COLOR_SHADOW_STRONG}` }} 
                     >
                         {/* Header form menggunakan NEW_COLOR */}
-                        <h1 className="font-bold mb-6 text-center font-markazi text-3xl md:text-4xl" style={{ color: NEW_COLOR }}>Konfirmasi & Ucapan</h1>
+                        <h1 className="font-bold mb-6 text-center font-markazi text-3xl md:text-4xl" style={{ color: NEW_COLOR }}>{weddingData.rsvpFormTitle}</h1>
                         <form onSubmit={handleSubmit}>
                             {/* Nama */}
                             <div className="mb-6">

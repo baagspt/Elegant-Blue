@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import type { InvitationData } from '../firebase/invitationTypes';
 
 // =================================================================
 // 1. DEFINISI KOMPONEN COUNTDOWN TIMER
@@ -11,11 +12,8 @@ interface TimeLeft {
     seconds: number;
 }
 
-const calculateTimeLeft = (): TimeLeft => {
-    // Tanggal target: 2026-02-02
-    // PERBAIKAN: Mengubah format tanggal dari 'YYYY-M-DD' menjadi 'YYYY/MM/DD' untuk kompatibilitas mobile yang lebih baik.
-    const targetDate = '2027/05/08'; 
-    const difference = +new Date(targetDate) - +new Date(); 
+const calculateTimeLeft = (targetDate: string): TimeLeft => {
+    const difference = +new Date(`${targetDate}T00:00:00`) - +new Date();
     
     if (difference <= 0) {
         return { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -46,16 +44,16 @@ const TimeUnit: React.FC<{ value: number; label: string }> = ({ value, label }) 
     );
 };
 
-const CountdownTimer: React.FC = () => {
-    const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft()); 
+const CountdownTimer: React.FC<{ targetDate: string }> = ({ targetDate }) => {
+    const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => calculateTimeLeft(targetDate));
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setTimeLeft(calculateTimeLeft());
+            setTimeLeft(calculateTimeLeft(targetDate));
         }, 1000);
 
         return () => clearInterval(timer);
-    }, []);
+    }, [targetDate]);
 
     return (
         <div className="flex justify-center mb-8 sm:mb-12 md:mb-16"> 
@@ -73,13 +71,8 @@ const CountdownTimer: React.FC = () => {
 // 2. KOMPONEN UTAMA: CoupleSection
 // =================================================================
 
-const CoupleSection: React.FC = () => {
-    const images: string[] = [
-        "/assets/images/sample3.jpg",
-        "/assets/images/sample3.jpg",
-        "/assets/images/sample3.jpg",
-        "/assets/images/sample3.jpg"
-    ];
+const CoupleSection: React.FC<{ weddingData: InvitationData }> = ({ weddingData }) => {
+    const images = weddingData.images.coupleStrip;
 
     const duplicatedImages = [...images, ...images, ...images, ...images];
 
@@ -89,7 +82,7 @@ const CoupleSection: React.FC = () => {
             <div 
                 className="absolute inset-0"
                 style={{
-                    backgroundImage: "url('/assets/images/bg1.jpeg')",
+                    backgroundImage: `url('${weddingData.images.coupleBackground}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
@@ -103,16 +96,16 @@ const CoupleSection: React.FC = () => {
                     <div className="mb-6 sm:mb-8">
                         {/* SUDAH DIPERBARUI: text-xs di mobile, md:text-base di desktop */}
                         <p className="text-xs sm:text-xs md:text-base tracking-widest font-montserrat font-bold" style={{fontFamily: "Markazi Text, serif"}}> 
-                            The Wedding Of
+                            {weddingData.weddingLabel}
                         </p>
                     </div>
 
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal font-whisper tracking-tight mb-6 sm:mb-8">
-                        Ryan &amp; Dita
+                        {weddingData.groomName} &amp; {weddingData.brideName}
                     </h1>
 
                     {/* Tanggal */}
-                    <p className="text-base sm:text-lg md:text-xl font-light font-Alan-Sans mb-16 sm:mb-24 md:mb-32" style={{fontFamily: "Markazi Text, serif"}}>08.05.2027</p> 
+                    <p className="text-base sm:text-lg md:text-xl font-light font-Alan-Sans mb-16 sm:mb-24 md:mb-32" style={{fontFamily: "Markazi Text, serif"}}>{weddingData.dateLabel}</p>
                 </div>
             </div>
             
@@ -120,15 +113,15 @@ const CoupleSection: React.FC = () => {
             <div className="relative z-10 px-4 mb-6 sm:mb-8"> 
                 <div className="w-full max-w-3xl mx-auto text-center"> 
                 
-                    <CountdownTimer /> 
+                    <CountdownTimer targetDate={weddingData.eventDate} />
                 
                     {/* Ayat Quran */}
                     <blockquote className="text-white text-sm sm:text-base italic font-serif mb-2 px-4" style={{fontFamily: "Markazi Text, serif"}}>
-                        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antarmu rasa kasih dan sayang."
+                        {weddingData.coupleQuote}
                     </blockquote>
                     {/* Sumber Ayat */}
                     <cite className="text-white text-sm sm:text-base not-italic font-medium" style={{fontFamily: "Markazi Text, serif"}}>
-                        - QS. Ar-Rum 21 -
+                        - {weddingData.coupleQuoteSource} -
                     </cite>
                 </div>
             </div>

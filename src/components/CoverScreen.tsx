@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { StarButton } from "@/components/star-button"; 
 import { useTheme } from "next-themes";
+import type { InvitationData } from "../firebase/invitationTypes";
 
 interface CoverScreenProps {
   guestName: string;
   onOpenInvitation: () => void;
   audioPlaying: boolean;
   showButton: boolean;
+  weddingData: InvitationData;
 }
 
 const CoverScreen: React.FC<CoverScreenProps> = ({
@@ -16,6 +18,7 @@ const CoverScreen: React.FC<CoverScreenProps> = ({
   onOpenInvitation,
   audioPlaying,
   showButton,
+  weddingData,
 }) => {
   const { theme } = useTheme();
 
@@ -35,7 +38,7 @@ const CoverScreen: React.FC<CoverScreenProps> = ({
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/assets/images/bg.jpg')",
+          backgroundImage: `url('${weddingData.images.coverBackground}')`,
           filter: 'blur(1px)',
         }}
       ></div>
@@ -48,15 +51,17 @@ const CoverScreen: React.FC<CoverScreenProps> = ({
       <div className="relative z-10 text-center text-white px-4 py-12"> 
         <div className="mb-8">
           <p className="text-sm md:text-base tracking-widest font-montserrat font-bold">
-            The Wedding Of
+            {weddingData.weddingLabel}
           </p>
         </div>
 
         <h1 className="text-4xl md:text-6xl font-normal font-whisper tracking-tight mb-12">
-          Ryan &amp; Dita
+          {weddingData.groomName} &amp; {weddingData.brideName}
         </h1>
 
-        <p className="text-sm font-light font-Alan-Sans mb-40">08.05.2027</p>
+        <p className="text-sm font-light font-Alan-Sans mb-40">
+          {weddingData.dateLabel}
+        </p>
 
         <div className="mb-8">
           <p className="text-sm md:text-base font-montserrat" style={{fontFamily: "Markazi Text, serif"}}>

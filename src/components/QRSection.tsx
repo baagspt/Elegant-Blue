@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from 'react';
+import type { InvitationData } from '../firebase/invitationTypes';
 
 // ==========================================================
 // 1. FUNGSI UNTUK MEMBACA PARAMETER URL (useSearchParams Mock)
 // ==========================================================
 const useGuestNameFromUrl = (): string => {
     const params = new URLSearchParams(window.location.search);
-    let guestName = params.get('to') || '';
+    const guestName = params.get('to') || '';
     return decodeURIComponent(guestName.replace(/\+/g, ' '));
 };
 
@@ -13,10 +14,10 @@ const useGuestNameFromUrl = (): string => {
 // 2. KOMPONEN UTAMA
 // ==========================================================
 
-const QRSection: React.FC = () => {
+const QRSection: React.FC<{ weddingData: InvitationData }> = ({ weddingData }) => {
     const names = {
-        bride: "Dita", 
-        groom: "Ryan", 
+        bride: weddingData.brideName.split(/\s+/)[0] || weddingData.brideName,
+        groom: weddingData.groomName.split(/\s+/)[0] || weddingData.groomName,
     };
     
     const coupleNameForScan = `${names.bride}_${names.groom}`;
@@ -97,7 +98,7 @@ const QRSection: React.FC = () => {
                             Kepada Yth. {guestName || 'Tamu Undangan'}
                         </h1>
                         <p className="text-sm md:text-xl text-white mt-2 font-markazi">
-                            Merupakan suatu kehormatan bagi kami atas kehadiran Anda.
+                            {weddingData.qrDescription}
                         </p>
                     </div>
 
@@ -139,7 +140,7 @@ const QRSection: React.FC = () => {
                         
                         {/* LOGO */}
                         <img 
-                            src="/assets/images/logo2.png" 
+                            src={weddingData.images.qrLogo}
                             alt="Wedding Logo" 
                             className="mx-auto mt-3 mb-1 w-32 h-auto" 
                             onError={(e) => {

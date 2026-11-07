@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import type { InvitationData } from '../firebase/invitationTypes';
 
 // =================================================================
 // 1. DEFINISI KOMPONEN TimelineItem
@@ -171,27 +172,8 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
 // -------------------------------------------------------------------------------- //
 // --- Komponen Utama Story ---
 // -------------------------------------------------------------------------------- //
-const Story: React.FC = () => {
-    const loveStoryEvents = [
-        {
-            date: '12 September 2017',
-            title: 'Awal Bertemu',
-            description: 'Tahun di mana dia dikenalkan oleh rekan kerjanya yang juga temanku melalui sosial media.',
-            imageUrl: '/assets/images/s1.jpg',
-        },
-        {
-            date: '20 June 2018',
-            title: 'Kencan Pertama',
-            description: 'Sebuah janji pertemuan yang canggung namun berkesan, menjadi awal dari segalanya.',
-            imageUrl: '/assets/images/s2.jpg',
-        },
-        {
-            date: '25 December 2020',
-            title: 'Lamaran',
-            description: 'Di penghujung tahun, sebuah pertanyaan besar diajukan, dan jawaban "Ya" membawa kami ke langkah selanjutnya.',
-            imageUrl: '/assets/images/s3.jpg',
-        },
-    ];
+const Story: React.FC<{ weddingData: InvitationData }> = ({ weddingData }) => {
+    const loveStoryEvents = weddingData.storyEvents;
 
     return (
         <section className="py-20 bg-[#79919E]">
@@ -199,7 +181,7 @@ const Story: React.FC = () => {
                 <div className="text-center mb-16">
                     <div className="mb-4">
                         <img 
-                            src="/assets/images/lovestory.png" 
+                            src={weddingData.images.storyHeading}
                             alt="Love Story" 
                             className="mx-auto max-w-[200px] md:max-w-[280px]"
                         />
@@ -207,7 +189,7 @@ const Story: React.FC = () => {
                     
                     {/* Teks 'The beautiful journey...' dipertahankan putih (text-white) agar terlihat jelas di latar belakang #727E6A */}
                     <p className="text-xl text-white max-w-2xl mx-auto" style={{fontFamily: "Markazi Text, serif"}}>
-                        The beautiful journey of our love
+                        {weddingData.storyIntro}
                     </p>
                     
                 </div>

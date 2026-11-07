@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
+import type { InvitationData } from '../firebase/invitationTypes';
 
 // --- Komponen GallerySection (Menggantikan Story Component) ---
-const GallerySection: React.FC = () => {
+const GallerySection: React.FC<{ weddingData: InvitationData }> = ({ weddingData }) => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     
     // Original images defined by ID.
     const originalImages = [
-        { id: 1, src: '/assets/images/1.jpg', alt: 'Aesthetic Nature Image 1', isPortrait: true }, 
-        { id: 2, src: '/assets/images/2.jpg', alt: 'Aesthetic Nature Image 2', isPortrait: true }, 
-        { id: 3, src: '/assets/images/3.jpg', alt: 'Aesthetic Nature Image 3', isPortrait: true }, 
-        { id: 8, src: '/assets/images/4.jpg', alt: 'Aesthetic Nature Image 8', isPortrait: true }, 
+        { id: 1, src: weddingData.images.gallery[0], alt: 'Gallery image 1', isPortrait: true },
+        { id: 2, src: weddingData.images.gallery[1], alt: 'Gallery image 2', isPortrait: true },
+        { id: 3, src: weddingData.images.gallery[2], alt: 'Gallery image 3', isPortrait: true },
+        { id: 8, src: weddingData.images.gallery[3], alt: 'Gallery image 4', isPortrait: true },
         // Landscape Images (akan ditumpuk)
-        { id: 4, src: '/assets/images/5.jpg', alt: 'Aesthetic Nature Image 4', isPortrait: false }, 
-        { id: 5, src: '/assets/images/6.jpg', alt: 'Aesthetic Nature Image 5', isPortrait: false }, 
-        { id: 6, src: '/assets/images/7.jpg', alt: 'Aesthetic Nature Image 6', isPortrait: false }, 
-        { id: 7, src: '/assets/images/8.jpg', alt: 'Aesthetic Nature Image 7', isPortrait: false }, 
+        { id: 4, src: weddingData.images.gallery[4], alt: 'Gallery image 5', isPortrait: false },
+        { id: 5, src: weddingData.images.gallery[5], alt: 'Gallery image 6', isPortrait: false },
+        { id: 6, src: weddingData.images.gallery[6], alt: 'Gallery image 7', isPortrait: false },
+        { id: 7, src: weddingData.images.gallery[7], alt: 'Gallery image 8', isPortrait: false },
     ];
 
     /*
@@ -77,7 +78,7 @@ const GallerySection: React.FC = () => {
                 <div className="text-center mb-16">
                     <div className="mb-4">
                         <img 
-                            src="/assets/images/gallerymoment.png" 
+                            src={weddingData.images.galleryHeading}
                             alt="Gallery Moment" 
                             className="mx-auto max-w-[200px] md:max-w-[280px]"
                         />

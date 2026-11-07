@@ -1,4 +1,6 @@
-export default function Example() {
+import type { InvitationData } from '../firebase/invitationTypes';
+
+export default function Footer({ weddingData }: { weddingData: InvitationData }) {
 
     return (
         <>
@@ -13,7 +15,7 @@ export default function Example() {
             {/* Ganti text-gray-800/70 menjadi text-white/80 */}
             <footer className="flex flex-col items-center justify-around w-full pt-3 pb-6 text-sm bg-[#2C363C] text-white/80">
                 <img 
-                    src="/assets/images/logo3.png" 
+                    src={weddingData.images.footerLogo}
                     alt="Wedding Logo" 
                     className="mx-auto mt-3 mb-1 w-32 h-auto" // PERUBAHAN: w-20 diubah menjadi w-32
                     // Fallback jika gambar tidak ditemukan
